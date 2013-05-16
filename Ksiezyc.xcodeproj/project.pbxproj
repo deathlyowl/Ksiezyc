@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FA57C273174570B9000ACB24 /* MoonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA57C272174570B9000ACB24 /* MoonViewController.m */; };
 		FA57C27617457132000ACB24 /* ShapeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FA57C27517457132000ACB24 /* ShapeFactory.m */; };
+		FA57C27917458CA5000ACB24 /* Moon.m in Sources */ = {isa = PBXBuildFile; fileRef = FA57C27817458CA5000ACB24 /* Moon.m */; };
 		FA5A516617454B66001B46F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A516517454B66001B46F9 /* UIKit.framework */; };
 		FA5A516817454B66001B46F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A516717454B66001B46F9 /* Foundation.framework */; };
 		FA5A516A17454B66001B46F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A516917454B66001B46F9 /* CoreGraphics.framework */; };
@@ -27,6 +28,8 @@
 		FA57C272174570B9000ACB24 /* MoonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonViewController.m; sourceTree = "<group>"; };
 		FA57C27417457132000ACB24 /* ShapeFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeFactory.h; sourceTree = "<group>"; };
 		FA57C27517457132000ACB24 /* ShapeFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeFactory.m; sourceTree = "<group>"; };
+		FA57C27717458CA5000ACB24 /* Moon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moon.h; sourceTree = "<group>"; };
+		FA57C27817458CA5000ACB24 /* Moon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Moon.m; sourceTree = "<group>"; };
 		FA5A516217454B66001B46F9 /* Ksiezyc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ksiezyc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5A516517454B66001B46F9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FA5A516717454B66001B46F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -97,6 +100,8 @@
 				FA57C272174570B9000ACB24 /* MoonViewController.m */,
 				FA5A518A17454FD6001B46F9 /* MoonView.h */,
 				FA5A518B17454FD6001B46F9 /* MoonView.m */,
+				FA57C27717458CA5000ACB24 /* Moon.h */,
+				FA57C27817458CA5000ACB24 /* Moon.m */,
 				FA57C27417457132000ACB24 /* ShapeFactory.h */,
 				FA57C27517457132000ACB24 /* ShapeFactory.m */,
 				FA5A516C17454B66001B46F9 /* Supporting Files */,
@@ -188,6 +193,7 @@
 				FA5A518C17454FD6001B46F9 /* MoonView.m in Sources */,
 				FA57C273174570B9000ACB24 /* MoonViewController.m in Sources */,
 				FA57C27617457132000ACB24 /* ShapeFactory.m in Sources */,
+				FA57C27917458CA5000ACB24 /* Moon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

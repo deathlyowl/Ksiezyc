@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "ShapeFactory.h"
+#import "Moon.h"
 
 @interface MoonView : UIView {
     float height;
+    Moon *moon;
     
     CALayer *moonLayer;
     CAShapeLayer *shadowLayer;

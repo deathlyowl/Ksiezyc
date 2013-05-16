@@ -19,7 +19,12 @@
         [self setBackgroundColor:[UIColor colorWithWhite:.125 alpha:1.]];
         [self setupLayers];
         
-        scale = 0;
+        moon = [[Moon alloc] init];
+        [moon setDate:[NSDate date]];
+        
+        NSLog(@"%@ [%f]", moon.phaseString, moon.percent);
+        
+        scale = 520 * moon.percent;
         
         
         [NSTimer scheduledTimerWithTimeInterval:0
@@ -34,7 +39,7 @@
 }
 
 - (void) scaler {
-    scale++;
+    //scale++;
     scale %= 520;
     UIBezierPath *path = [[UIBezierPath alloc] init];
     

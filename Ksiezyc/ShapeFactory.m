@@ -43,7 +43,7 @@
     [path closePath];
     
     [layer setPath:path.CGPath];
-    [layer setFillColor:[UIColor colorWithWhite:.1 alpha:.75].CGColor];
+    [layer setFillColor:[UIColor colorWithWhite:.125 alpha:1].CGColor];
     
     return layer;
 }
