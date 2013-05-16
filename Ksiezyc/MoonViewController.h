@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  MoonViewController.h
 //  Ksiezyc
 //
 //  Created by Paweł Ksieniewicz on 16.05.2013.
@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MoonViewController.h"
+#import "MoonView.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate> 
-
-@property (strong, nonatomic) UIWindow *window;
+@interface MoonViewController : UIViewController
 
 @end
