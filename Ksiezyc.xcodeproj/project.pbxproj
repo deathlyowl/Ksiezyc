@@ -16,8 +16,6 @@
 		FA5A517817454B66001B46F9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5A517717454B66001B46F9 /* Default.png */; };
 		FA5A517A17454B66001B46F9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5A517917454B66001B46F9 /* Default@2x.png */; };
 		FA5A517C17454B66001B46F9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5A517B17454B66001B46F9 /* Default-568h@2x.png */; };
-		FA5A517F17454B66001B46F9 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA5A517D17454B66001B46F9 /* MainStoryboard.storyboard */; };
-		FA5A518217454B66001B46F9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5A518117454B66001B46F9 /* ViewController.m */; };
 		FA5A518917454F86001B46F9 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A518817454F86001B46F9 /* OpenGLES.framework */; };
 		FA5A518C17454FD6001B46F9 /* MoonView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5A518B17454FD6001B46F9 /* MoonView.m */; };
 		FA5A518E1745504B001B46F9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A518D1745504B001B46F9 /* QuartzCore.framework */; };
@@ -37,9 +35,6 @@
 		FA5A517717454B66001B46F9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		FA5A517917454B66001B46F9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		FA5A517B17454B66001B46F9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		FA5A517E17454B66001B46F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		FA5A518017454B66001B46F9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		FA5A518117454B66001B46F9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		FA5A518817454F86001B46F9 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		FA5A518A17454FD6001B46F9 /* MoonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonView.h; sourceTree = "<group>"; };
 		FA5A518B17454FD6001B46F9 /* MoonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonView.m; sourceTree = "<group>"; };
@@ -98,9 +93,6 @@
 				FA5A517517454B66001B46F9 /* AppDelegate.m */,
 				FA5A518A17454FD6001B46F9 /* MoonView.h */,
 				FA5A518B17454FD6001B46F9 /* MoonView.m */,
-				FA5A517D17454B66001B46F9 /* MainStoryboard.storyboard */,
-				FA5A518017454B66001B46F9 /* ViewController.h */,
-				FA5A518117454B66001B46F9 /* ViewController.m */,
 				FA5A516C17454B66001B46F9 /* Supporting Files */,
 			);
 			path = Ksiezyc;
@@ -175,7 +167,6 @@
 				FA5A517817454B66001B46F9 /* Default.png in Resources */,
 				FA5A517A17454B66001B46F9 /* Default@2x.png in Resources */,
 				FA5A517C17454B66001B46F9 /* Default-568h@2x.png in Resources */,
-				FA5A517F17454B66001B46F9 /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,7 +179,6 @@
 			files = (
 				FA5A517217454B66001B46F9 /* main.m in Sources */,
 				FA5A517617454B66001B46F9 /* AppDelegate.m in Sources */,
-				FA5A518217454B66001B46F9 /* ViewController.m in Sources */,
 				FA5A518C17454FD6001B46F9 /* MoonView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,14 +192,6 @@
 				FA5A516F17454B66001B46F9 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		FA5A517D17454B66001B46F9 /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FA5A517E17454B66001B46F9 /* en */,
-			);
-			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -312,6 +294,7 @@
 				FA5A518717454B66001B46F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -11,6 +11,10 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
-@interface MoonView : UIView
+@interface MoonView : UIView{
+    CAEAGLLayer* _eaglLayer;
+    EAGLContext* _context;
+    GLuint _colorRenderBuffer;
+}
 
 @end

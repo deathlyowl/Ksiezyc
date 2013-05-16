@@ -9,9 +9,19 @@
 #import "AppDelegate.h"
 
 @implementation AppDelegate
+@synthesize glView=_glView;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.glView = [[MoonView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+    self.window.rootViewController = [[UIViewController alloc] init];
+    [self.window.rootViewController setView:_glView];
+    self.window.layer.cornerRadius = 20;
+    self.window.clipsToBounds = YES;
+    [self.window makeKeyAndVisible];
+    
     // Override point for customization after application launch.
     return YES;
 }
