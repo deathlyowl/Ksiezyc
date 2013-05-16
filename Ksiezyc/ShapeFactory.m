@@ -38,8 +38,8 @@
     [path moveToPoint:CGPointMake(130, 0)];
     [path addQuadCurveToPoint:CGPointMake(260, 130) controlPoint:CGPointMake(260, 0)];
     [path addQuadCurveToPoint:CGPointMake(130, 260) controlPoint:CGPointMake(260, 260)];
-    [path addQuadCurveToPoint:CGPointMake(0, 130) controlPoint:CGPointMake(0, 260)];
-    [path addQuadCurveToPoint:CGPointMake(130, 0) controlPoint:CGPointMake(0, 0)];
+    [path addQuadCurveToPoint:CGPointMake(260, 130) controlPoint:CGPointMake(260, 260)];
+    [path addQuadCurveToPoint:CGPointMake(130, 0) controlPoint:CGPointMake(260, 0)];
     [path closePath];
     
     [layer setPath:path.CGPath];
@@ -52,7 +52,7 @@
 + (CALayer *) moon{
     CALayer *layer = [self circleWithRadius:130 andPosition:CGPointMake(160, 160)];
     layer.cornerRadius = 130;
-    layer.backgroundColor = [UIColor colorWithHue:.175 saturation:.3 brightness:.5 alpha:1].CGColor;
+    layer.backgroundColor = [UIColor colorWithHue:0.11f saturation:0.04f brightness:0.82f alpha:1.00f].CGColor;
     layer.masksToBounds = YES;
 
     CALayer *craterOne = [self circleWithRadius:80 andPosition:CGPointMake(80, 240)];
@@ -66,7 +66,8 @@
     CALayer *craterNine = [self circleWithRadius:15 andPosition:CGPointMake(170, 50)];
 
     craterOne.backgroundColor = craterTwo.backgroundColor = craterThree.backgroundColor = craterFour.backgroundColor = craterFive.backgroundColor =
-    craterSix.backgroundColor = craterSeven.backgroundColor = craterEight.backgroundColor = craterNine.backgroundColor = [UIColor colorWithHue:.175 saturation:.3 brightness:.4 alpha:1].CGColor;
+    craterSix.backgroundColor = craterSeven.backgroundColor = craterEight.backgroundColor = craterNine.backgroundColor =
+    [UIColor colorWithHue:0.07f saturation:0.08f brightness:0.39f alpha:1.00f].CGColor;
     
     [layer addSublayer:craterOne];
     [layer addSublayer:craterTwo];

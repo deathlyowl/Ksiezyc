@@ -16,7 +16,7 @@
     NSLog(@"Init with frame");
     self = [super initWithFrame:frame];
     if (self) {
-        [self setBackgroundColor:[UIColor colorWithWhite:.125 alpha:1.]];
+        [self setBackgroundColor:[UIColor colorWithWhite:.12 alpha:1.]];
         [self setupLayers];
         
         moon = [[Moon alloc] init];
@@ -25,50 +25,43 @@
         NSLog(@"%@ [%f]", moon.phaseString, moon.percent);
         
         scale = 520 * moon.percent;
+        moonScale = -1;
         
-        
-        [NSTimer scheduledTimerWithTimeInterval:0
-                                         target:self
-                                       selector:@selector(showMoon)
-                                       userInfo:nil
-                                        repeats:NO];
-        
-        
+        scaleTimer = [NSTimer scheduledTimerWithTimeInterval:.0125
+                                                      target:self
+                                                    selector:@selector(scaler)
+                                                    userInfo:nil
+                                                     repeats:YES];
     }
     return self;
 }
 
 - (void) scaler {
-    //scale++;
-    scale %= 520;
+    moonScale++;
     UIBezierPath *path = [[UIBezierPath alloc] init];
     
-    BOOL mode = scale>=260;
+    BOOL mode = moonScale>=260;
     
-    int longitude = scale%260;
+    int longitude = moonScale%260;
     
         [path moveToPoint:CGPointMake(130, 0)];
         [path addQuadCurveToPoint:CGPointMake(260-longitude, 130) controlPoint:CGPointMake(260-longitude, 0)];
         [path addQuadCurveToPoint:CGPointMake(130, 260) controlPoint:CGPointMake(260-longitude, 260)];
-        [path addQuadCurveToPoint:CGPointMake(260*mode, 130) controlPoint:CGPointMake(260*mode, 260)];
-        [path addQuadCurveToPoint:CGPointMake(130, 0) controlPoint:CGPointMake(260*mode, 0)];
+        [path addQuadCurveToPoint:CGPointMake(260*!mode, 130) controlPoint:CGPointMake(260*!mode, 260)];
+        [path addQuadCurveToPoint:CGPointMake(130, 0) controlPoint:CGPointMake(260*!mode, 0)];
         [path closePath];
     
     [shadowLayer setPath:path.CGPath];
+    
+    if (moonScale == scale){
+        [scaleTimer invalidate];
+        [self showMoon];
+    }
 }
 
 - (void) showMoon{
-    [CATransaction setAnimationDuration:.75];
-    
+    [CATransaction setAnimationDuration:.5];
     moonLayer.transform = CATransform3DMakeScale(1, 1, 1);
-    
-    
-    
-    [NSTimer scheduledTimerWithTimeInterval:.025
-                                     target:self
-                                   selector:@selector(scaler)
-                                   userInfo:nil
-                                    repeats:YES];
 }
 
 - (void) setupLayers{
@@ -76,11 +69,12 @@
     height = [UIScreen mainScreen].bounds.size.height - 20;
     
     moonLayer = [ShapeFactory moon];
-    moonLayer.transform = CATransform3DMakeScale(0, 0, 1);
+    moonLayer.transform = CATransform3DMakeScale(.33, .33, 1);
     
     shadowLayer = [ShapeFactory shadow];
     
-    [moonLayer addSublayer:shadowLayer];
+    
+    [moonLayer setMask:shadowLayer];
     
     [self.layer addSublayer:moonLayer];
 }

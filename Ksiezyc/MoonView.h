@@ -19,6 +19,9 @@
     CAShapeLayer *shadowLayer;
     
     int scale;
+    int moonScale;
+    
+    NSTimer *scaleTimer;
 }
 
 @end
