@@ -25,6 +25,7 @@
         NSLog(@"%@ [%f]", moon.phaseString, moon.percent);
         
         scale = 520 * moon.percent;
+        scale = 160;
         moonScale = -1;
         
         scaleTimer = [NSTimer scheduledTimerWithTimeInterval:.0125
@@ -44,12 +45,12 @@
     
     int longitude = moonScale%260;
     
-        [path moveToPoint:CGPointMake(130, 0)];
-        [path addQuadCurveToPoint:CGPointMake(260-longitude, 130) controlPoint:CGPointMake(260-longitude, 0)];
-        [path addQuadCurveToPoint:CGPointMake(130, 260) controlPoint:CGPointMake(260-longitude, 260)];
-        [path addQuadCurveToPoint:CGPointMake(260*!mode, 130) controlPoint:CGPointMake(260*!mode, 260)];
-        [path addQuadCurveToPoint:CGPointMake(130, 0) controlPoint:CGPointMake(260*!mode, 0)];
-        [path closePath];
+    [path moveToPoint:CGPointMake(130, 0)];
+    [path addQuadCurveToPoint:CGPointMake(260-longitude, 130) controlPoint:CGPointMake(260-longitude, 0)];
+    [path addQuadCurveToPoint:CGPointMake(130, 260) controlPoint:CGPointMake(260-longitude, 260)];
+    [path addQuadCurveToPoint:CGPointMake(260*!mode, 130) controlPoint:CGPointMake(260*!mode, 260)];
+    [path addQuadCurveToPoint:CGPointMake(130, 0) controlPoint:CGPointMake(260*!mode, 0)];
+    [path closePath];
     
     [shadowLayer setPath:path.CGPath];
     
@@ -61,7 +62,7 @@
 
 - (void) showMoon{
     [CATransaction setAnimationDuration:.5];
-    moonLayer.transform = CATransform3DMakeScale(1, 1, 1);
+    moonLayer.transform = CATransform3DConcat(CATransform3DMakeScale(1, 1, 1), CATransform3DMakeRotation(-.125, 0, 0, 1));
 }
 
 - (void) setupLayers{
@@ -69,13 +70,10 @@
     height = [UIScreen mainScreen].bounds.size.height - 20;
     
     moonLayer = [ShapeFactory moon];
-    moonLayer.transform = CATransform3DMakeScale(.33, .33, 1);
-    
+    moonLayer.transform = CATransform3DConcat(CATransform3DMakeScale(.33, .33, 1), CATransform3DMakeRotation(-.125, 0, 0, 1));
     shadowLayer = [ShapeFactory shadow];
     
-    
     [moonLayer setMask:shadowLayer];
-    
     [self.layer addSublayer:moonLayer];
 }
 

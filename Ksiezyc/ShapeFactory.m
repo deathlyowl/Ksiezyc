@@ -69,6 +69,7 @@
     craterSix.backgroundColor = craterSeven.backgroundColor = craterEight.backgroundColor = craterNine.backgroundColor =
     [UIColor colorWithHue:0.07f saturation:0.08f brightness:0.39f alpha:1.00f].CGColor;
     
+/*
     [layer addSublayer:craterOne];
     [layer addSublayer:craterTwo];
     [layer addSublayer:craterThree];
@@ -78,7 +79,7 @@
     [layer addSublayer:craterSeven];
     [layer addSublayer:craterEight];
     [layer addSublayer:craterNine];
-    
+    */
     
     return layer;
 }
