@@ -7,6 +7,7 @@
 //
 
 #import "ShapeFactory.h"
+#import "UIBezierPath+UIGlobeBezierPath.h"
 
 @implementation ShapeFactory
 
@@ -35,6 +36,7 @@
     CAShapeLayer *layer = [CAShapeLayer layer];
     
     UIBezierPath *path = [[UIBezierPath alloc] init];
+    
     [path moveToPoint:CGPointMake(130, 0)];
     [path addQuadCurveToPoint:CGPointMake(260, 130) controlPoint:CGPointMake(260, 0)];
     [path addQuadCurveToPoint:CGPointMake(130, 260) controlPoint:CGPointMake(260, 260)];
@@ -48,13 +50,30 @@
     return layer;
 }
 
++ (CALayer *)backgroundWithFrame:(CGRect)frame{
+    CALayer *layer = [self rectWithBounds:frame
+                              anchorPoint:CGPointMake(.5, .5)
+                              andPosition:CGPointMake(frame.size.width/4, frame.size.height/2)];
+    [layer setBounds:frame];
+    
+    layer.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]].CGColor;
+
+    return layer;
+}
+
++ (CALayer *)moonBG{
+    CALayer *layer = [self circleWithRadius:130 andPosition:CGPointMake(160, 160)];
+    layer.cornerRadius = 130;
+    layer.backgroundColor = [UIColor colorWithRed:.06 green:.11 blue:.14 alpha:1].CGColor;
+    return layer;
+}
 
 + (CALayer *) moon{
     CALayer *layer = [self circleWithRadius:130 andPosition:CGPointMake(160, 160)];
     layer.cornerRadius = 130;
     layer.backgroundColor = [UIColor colorWithHue:0.11f saturation:0.04f brightness:0.82f alpha:1.00f].CGColor;
     layer.masksToBounds = YES;
-
+    /*
     CALayer *craterOne = [self circleWithRadius:80 andPosition:CGPointMake(80, 240)];
     CALayer *craterTwo = [self circleWithRadius:45 andPosition:CGPointMake(30, 120)];
     CALayer *craterThree = [self circleWithRadius:30 andPosition:CGPointMake(110, 140)];
@@ -69,7 +88,6 @@
     craterSix.backgroundColor = craterSeven.backgroundColor = craterEight.backgroundColor = craterNine.backgroundColor =
     [UIColor colorWithHue:0.07f saturation:0.08f brightness:0.39f alpha:1.00f].CGColor;
     
-/*
     [layer addSublayer:craterOne];
     [layer addSublayer:craterTwo];
     [layer addSublayer:craterThree];
@@ -80,10 +98,7 @@
     [layer addSublayer:craterEight];
     [layer addSublayer:craterNine];
     */
-    
     return layer;
 }
-
-
 
 @end

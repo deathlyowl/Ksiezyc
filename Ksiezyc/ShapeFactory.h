@@ -12,6 +12,8 @@
 @interface ShapeFactory : NSObject
 
 + (CALayer *) moon;
++ (CALayer *)moonBG;
 + (CAShapeLayer *) shadow;
++ (CALayer *)backgroundWithFrame:(CGRect)frame;
 
 @end

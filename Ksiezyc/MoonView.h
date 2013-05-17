@@ -15,12 +15,13 @@
     float height;
     Moon *moon;
     
-    CALayer *moonLayer;
+    CALayer *backgroundLayer;
+    CALayer *moonLayer, *moonBGLayer;
     CAShapeLayer *shadowLayer;
     
     int scale;
     int moonScale;
-    
+        
     NSTimer *scaleTimer;
 }
 
