@@ -72,32 +72,6 @@
     CALayer *layer = [self circleWithRadius:130 andPosition:CGPointMake(160, 160)];
     layer.cornerRadius = 130;
     layer.backgroundColor = [UIColor colorWithHue:0.11f saturation:0.04f brightness:0.82f alpha:1.00f].CGColor;
-    layer.masksToBounds = YES;
-    /*
-    CALayer *craterOne = [self circleWithRadius:80 andPosition:CGPointMake(80, 240)];
-    CALayer *craterTwo = [self circleWithRadius:45 andPosition:CGPointMake(30, 120)];
-    CALayer *craterThree = [self circleWithRadius:30 andPosition:CGPointMake(110, 140)];
-    CALayer *craterFour = [self circleWithRadius:35 andPosition:CGPointMake(100, 70)];
-    CALayer *craterFive = [self circleWithRadius:30 andPosition:CGPointMake(155, 95)];
-    CALayer *craterSix = [self circleWithRadius:15 andPosition:CGPointMake(170, 200)];
-    CALayer *craterSeven = [self circleWithRadius:15 andPosition:CGPointMake(180, 130)];
-    CALayer *craterEight = [self circleWithRadius:15 andPosition:CGPointMake(190, 80)];
-    CALayer *craterNine = [self circleWithRadius:15 andPosition:CGPointMake(170, 50)];
-
-    craterOne.backgroundColor = craterTwo.backgroundColor = craterThree.backgroundColor = craterFour.backgroundColor = craterFive.backgroundColor =
-    craterSix.backgroundColor = craterSeven.backgroundColor = craterEight.backgroundColor = craterNine.backgroundColor =
-    [UIColor colorWithHue:0.07f saturation:0.08f brightness:0.39f alpha:1.00f].CGColor;
-    
-    [layer addSublayer:craterOne];
-    [layer addSublayer:craterTwo];
-    [layer addSublayer:craterThree];
-    [layer addSublayer:craterFour];
-    [layer addSublayer:craterFive];
-    [layer addSublayer:craterSix];
-    [layer addSublayer:craterSeven];
-    [layer addSublayer:craterEight];
-    [layer addSublayer:craterNine];
-    */
     return layer;
 }
 

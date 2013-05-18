@@ -11,62 +11,28 @@
 
 @implementation MoonView
 
-// Replace initWithFrame with this
-- (id)initWithFrame:(CGRect)frame
-{
-    NSLog(@"Init with frame");
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (self)
-    {
-        self.backgroundColor = [UIColor colorWithRed:.05 green:.1 blue:.13 alpha:1];
-
-        [self setupLayers];
-        
+    if (self) {
         moon = [Moon moonWithDate:[NSDate date]];
-        
-        NSLog(@"%@ [%f]", moon.phaseString, moon.percent);
-        
-        scale = 520 * moon.percent;
+        [self setupLayers];
         moonScale = -1;
-        
         scaleTimer = [NSTimer scheduledTimerWithTimeInterval:.0125
                                                       target:self
                                                     selector:@selector(scaler)
                                                     userInfo:nil
                                                      repeats:YES];
-        
-        [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(showMoon) userInfo:nil repeats:NO];
     }
     return self;
 }
 
 - (void) scaler {
     moonScale++;
-    UIBezierPath *path = [[UIBezierPath alloc] init];
-    
-    BOOL mode = moonScale>=260;
-    
-    int longitude = moonScale%260;
-    
-    
-    [path moveToPoint:CGPointMake(130, 0)];
-    [path addQuadCurveToPoint:CGPointMake(260-longitude, 130) controlPoint:CGPointMake(260-longitude, 0)];
-    [path addQuadCurveToPoint:CGPointMake(130, 260) controlPoint:CGPointMake(260-longitude, 260)];
-    [path addQuadCurveToPoint:CGPointMake(260*!mode, 130) controlPoint:CGPointMake(260*!mode, 260)];
-    [path addQuadCurveToPoint:CGPointMake(130, 0) controlPoint:CGPointMake(260*!mode, 0)];
-    [path closePath];
-    
-    [shadowLayer setPath:path.CGPath];
-    
-    
-    
     [shadowLayer setPath:[UIBezierPath globeCurveWithRadius:130
-                                                 startScale:!mode
+                                                 startScale:moonScale < 260
                                                 andEndScale:1-(float)(moonScale%260)/260].CGPath];
     
-    if (moonScale == scale){
-        [scaleTimer invalidate];
-    }
+    if (moonScale == (int)(520 * moon.percent)) [scaleTimer invalidate];
 }
 
 - (void) showMoon{
@@ -77,6 +43,7 @@
 
 
 - (void) setupLayers{
+    self.backgroundColor = [UIColor colorWithRed:.05 green:.1 blue:.13 alpha:1];
     // Niezbędna wysokość urządzenia
     height = [UIScreen mainScreen].bounds.size.height;
     

@@ -24,7 +24,7 @@
 		FA5A517C17454B66001B46F9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5A517B17454B66001B46F9 /* Default-568h@2x.png */; };
 		FA5A518C17454FD6001B46F9 /* MoonView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5A518B17454FD6001B46F9 /* MoonView.m */; };
 		FA5A518E1745504B001B46F9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A518D1745504B001B46F9 /* QuartzCore.framework */; };
-		FABA59B21746767C0057C89B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FABA59B11746767C0057C89B /* Default.png */; };
+		FAF6B0341747B26100ADCD62 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF6B0331747B26100ADCD62 /* Icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,7 +54,7 @@
 		FA5A518A17454FD6001B46F9 /* MoonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonView.h; sourceTree = "<group>"; };
 		FA5A518B17454FD6001B46F9 /* MoonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonView.m; sourceTree = "<group>"; };
 		FA5A518D1745504B001B46F9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		FABA59B11746767C0057C89B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		FAF6B0331747B26100ADCD62 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +123,7 @@
 		FA5A516C17454B66001B46F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				FABA59B11746767C0057C89B /* Default.png */,
+				FAF6B0331747B26100ADCD62 /* Icon@2x.png */,
 				FA57C27A1745985B000ACB24 /* Icon.png */,
 				FA4F81971746633B00782BC4 /* background.png */,
 				FA5A516D17454B66001B46F9 /* Ksiezyc-Info.plist */,
@@ -194,7 +194,7 @@
 				FA5A517C17454B66001B46F9 /* Default-568h@2x.png in Resources */,
 				FA57C27B1745985B000ACB24 /* Icon.png in Resources */,
 				FA4F81981746633B00782BC4 /* background.png in Resources */,
-				FABA59B21746767C0057C89B /* Default.png in Resources */,
+				FAF6B0341747B26100ADCD62 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,4 +11,6 @@
 
 @interface MoonViewController : UIViewController
 
+@property (nonatomic, retain) MoonView *view;
+
 @end
