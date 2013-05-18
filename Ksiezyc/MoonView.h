@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
 #import "ShapeFactory.h"
 #import "Moon.h"
 
@@ -15,14 +14,16 @@
     float height;
     Moon *moon;
     
-    CALayer *backgroundLayer;
+    CALayer *backgroundLayer, *backgroundTwoLayer;
     CALayer *moonLayer, *moonBGLayer;
     CAShapeLayer *shadowLayer;
     
-    int scale;
     int moonScale;
         
     NSTimer *scaleTimer;
 }
+
+- (void) showMoon;
+- (void) animateBackground;
 
 @end

@@ -8,32 +8,28 @@
 
 #import "MoonViewController.h"
 
-@interface MoonViewController ()
-
-@end
-
 @implementation MoonViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.view = [[MoonView alloc] init];
-        // Custom initialization
-    }
+    if (self) self.view = [[MoonView alloc] init];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(backToBlack)
+                                                 name:@"Active"
+                                               object:nil];
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+-(void)viewDidAppear:(BOOL)animated{
+    NSLog(@"Appear");
+    [self.view showMoon];
+    [self.view animateBackground];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void) backToBlack{
+    NSLog(@"Back to black!");
+    [self.view animateBackground];
 }
 
 @end
