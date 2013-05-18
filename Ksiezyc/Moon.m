@@ -10,14 +10,18 @@
 
 @implementation Moon
 
-@synthesize date;
 - (id) initWithDate:(NSDate*) _date {
     self=[super init];
     if (self) {
-        [self setDate:_date];
+        self->date = _date;
         [self calculate];
     }
     return self;
+}
+
++ (Moon *)moonWithDate:(NSDate *)date {
+    Moon *moon=[[Moon alloc] initWithDate:date];
+    return moon;
 }
 
 - (void) calculate {

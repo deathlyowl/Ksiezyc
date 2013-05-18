@@ -22,7 +22,7 @@
 
         [self setupLayers];
         
-        moon = [[Moon alloc] initWithDate:[NSDate date]];
+        moon = [Moon moonWithDate:[NSDate date]];
         
         NSLog(@"%@ [%f]", moon.phaseString, moon.percent);
         

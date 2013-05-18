@@ -17,13 +17,13 @@
 
 @interface Moon : NSObject {
     float dayAndMonth;
+    NSDate *date;
 }
 - (short) phase;
 - (NSString*) phaseString;
 - (float) percent;
 - (void) calculate;
 - (id) initWithDate:(NSDate*) date;
-@property (nonatomic, retain) NSDate *date;
-@property (nonatomic) short phase;
-@property (nonatomic) float percent;
++ (Moon*) moonWithDate:(NSDate*) date;
+
 @end
