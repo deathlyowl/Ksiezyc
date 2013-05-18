@@ -15,10 +15,15 @@
 #define MOON_PHASE_WITCHERING 4
 #define MOON_PHASE_THIRD 5
 
-@interface Moon : NSObject
+@interface Moon : NSObject {
+    float dayAndMonth;
+}
 - (short) phase;
 - (NSString*) phaseString;
 - (float) percent;
-
+- (void) calculate;
+- (id) initWithDate:(NSDate*) date;
 @property (nonatomic, retain) NSDate *date;
+@property (nonatomic) short phase;
+@property (nonatomic) float percent;
 @end

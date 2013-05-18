@@ -11,8 +11,16 @@
 @implementation Moon
 
 @synthesize date;
+- (id) initWithDate:(NSDate*) _date {
+    self=[super init];
+    if (self) {
+        [self setDate:_date];
+        [self calculate];
+    }
+    return self;
+}
 
-- (short) phase {
+- (void) calculate {
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSHourCalendarUnit
                                                                    fromDate:date];
     long int year = components.year;
@@ -25,10 +33,13 @@
     
     remainder *= 11;
     remainder %= 30;
-
-    float dayAndMonth = remainder + day + month + .5*(hour>12);
+    
+    dayAndMonth = remainder + day + month + .5*(hour>12);
     if (year>2000) dayAndMonth -= 8;
     
+}
+
+- (short) phase {
     if (dayAndMonth==0)return MOON_PHASE_NEW;
     if (dayAndMonth==7.5) return MOON_PHASE_FIRST;
     if (dayAndMonth==15) return MOON_PHASE_FULL;
@@ -38,22 +49,6 @@
 }
 
 - (float) percent {
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSHourCalendarUnit
-                                                                   fromDate:date];
-    long int year = components.year;
-    long int month = components.month;
-    long int day = components.day;
-    long int hour = components.hour;
-    
-    int remainder = (year%100)%19;
-    if (remainder>9) remainder -= 19;
-    
-    remainder *= 11;
-    remainder %= 30;
-    
-    float dayAndMonth = remainder + day + month + .5*(hour>12);
-    if (year>2000) dayAndMonth -= 8;
-    
     return dayAndMonth/30;
 }
 
