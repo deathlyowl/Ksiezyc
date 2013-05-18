@@ -28,7 +28,7 @@
 
 + (Moon*) moonWithDate:(NSDate*) date;
 + (NSString*) phaseStringWithPhase:(short) phase;
-+ (float) percentWithProgress:(float) progress;
++ (float) percentageWithProgress:(float) progress;
 + (short) phaseWithProgress:(float) progress;
 
 @end

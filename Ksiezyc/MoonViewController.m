@@ -12,8 +12,18 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) self.view = [[MoonView alloc] init];
-    
+    if (self) {
+        days = 0;
+        moonView = [[MoonView alloc] init];
+        moon = [Moon moonWithDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+        NSLog(@"MOON: %f", moon.progress);
+        self.view = moonView;
+    }
+    [self setLabel];
+    [moonView animateMoonToPercentage:[Moon percentageWithProgress:moon.progress]];
+    [moonView animateNextMoonToPercentage:[Moon percentageWithProgress:moon.nextProgress]];
+
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(backToBlack)
                                                  name:@"Active"
@@ -21,13 +31,33 @@
     return self;
 }
 
+- (void) setLabel{
+    [moonView setNextMoonText:[NSString stringWithFormat:@"%@ za %i dni",
+                               [Moon phaseStringWithPhase:[Moon phaseWithProgress:moon.nextProgress]],
+                               (int)(moon.nextProgress-moon.progress)]];
+}
+
 -(void)viewDidAppear:(BOOL)animated{
-    [self.view showMoon];
-    [self.view animateBackground];
+    [moonView showMoon];
+    [moonView animateBackground];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1
+                                     target:self
+                                   selector:@selector(tick)
+                                   userInfo:nil
+                                    repeats:YES];
+     
+}
+
+- (void) tick{
+    moon = [Moon moonWithDate:[NSDate dateWithTimeIntervalSinceNow:24*60*60*++days*.5]];
+    [moonView animateMoonToPercentage:[Moon percentageWithProgress:moon.progress]];
+    [moonView animateNextMoonToPercentage:[Moon percentageWithProgress:moon.nextProgress]];
+    [self setLabel];
 }
 
 - (void) backToBlack{
-    [self.view animateBackground];
+    [moonView animateBackground];
 }
 
 @end

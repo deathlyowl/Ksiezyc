@@ -8,63 +8,55 @@
 
 #import "MoonView.h"
 #import "UIBezierPath+UIGlobeBezierPath.h"
+#import <tgmath.h>
+
+#define MOON_RADIUS 130
+#define NEXT_MOON_RADIUS 20
 
 @implementation MoonView
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        moon = [Moon moonWithDate:[NSDate date]];
         [self setupLayers];
-        moonScale = nextMoonScale = -1;
-        
-        NSString *nextMoonText = [NSString stringWithFormat:@"%@ za %i dni",
-                                  [Moon phaseStringWithPhase:[Moon phaseWithProgress:moon.nextProgress]],
-                                  (int)(moon.nextProgress-moon.progress)];
-        
-        [nextMoonLabel setString:nextMoonText];
-        scaleTimer = [NSTimer scheduledTimerWithTimeInterval:.0125
-                                                      target:self
-                                                    selector:@selector(scaler)
-                                                    userInfo:nil
-                                                     repeats:YES];
-        
-        nextScaleTimer = [NSTimer scheduledTimerWithTimeInterval:.0625
-                                                          target:self
-                                                        selector:@selector(nextScaler)
-                                                        userInfo:nil
-                                                         repeats:YES];
-        
+        moonScale = nextMoonScale = 0;
     }
     return self;
 }
 
-- (void) scaler {
-    moonScale++;
-    
-    [shadowLayer setPath:[UIBezierPath globeCurveWithRadius:130
-                                                 startScale:moonScale < 260
-                                                andEndScale:1-(float)(moonScale%260)/260].CGPath];
-    
-    if (moonScale == (int)(520 * [Moon percentWithProgress:moon.progress])) [scaleTimer invalidate];
+- (void) setNextMoonText:(NSString *)string{
+    [nextMoonLabel setString:string];
 }
 
-- (void) nextScaler {
-    nextMoonScale++;
+- (void) animateMoonToPercentage:(float)percentage{
+    moonScale = percentage * MOON_RADIUS*4;
     
-    if (nextMoonScale!=80) {
-        [nextShadowLayer setPath:[UIBezierPath globeCurveWithRadius:20
-                                                         startScale:nextMoonScale < 40
-                                                        andEndScale:1-(float)(nextMoonScale%40)/40].CGPath];
-    }
-    else{
-        [nextShadowLayer setPath:[UIBezierPath globeCurveWithRadius:20
-                                                         startScale:0
-                                                        andEndScale:0].CGPath];
-        
-    }
+    UIBezierPath *newPath = [UIBezierPath globeCurveWithRadius:MOON_RADIUS
+                                                    startScale:moonScale < MOON_RADIUS*2
+                                                   andEndScale:1-(float)(fmod(moonScale, MOON_RADIUS*2))/(MOON_RADIUS*2)];
     
-    if (nextMoonScale == (int)(80 * [Moon percentWithProgress:moon.nextProgress])) [nextScaleTimer invalidate];
+    CABasicAnimation *connectorAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
+    connectorAnimation.duration = 1; //duration need to be less than the time it takes to fire handle timer again
+    connectorAnimation.cumulative = YES;
+    connectorAnimation.fromValue = (id)shadowLayer.path;
+    connectorAnimation.toValue = (id)newPath.CGPath;
+    [shadowLayer addAnimation:connectorAnimation forKey:@"animatePath"];
+    
+    [shadowLayer setPath:newPath.CGPath];
+    
+    /*
+    
+    [shadowLayer setPath:[UIBezierPath globeCurveWithRadius:MOON_RADIUS
+                                                 startScale:moonScale < MOON_RADIUS*2
+                                                andEndScale:1-(float)(fmod(moonScale, MOON_RADIUS*2))/(MOON_RADIUS*2)].CGPath];
+     */
+}
+
+- (void) animateNextMoonToPercentage:(float)percentage{
+    nextMoonScale = percentage * NEXT_MOON_RADIUS * 4;
+    [nextShadowLayer setPath:[UIBezierPath globeCurveWithRadius:NEXT_MOON_RADIUS
+                                                     startScale:nextMoonScale < NEXT_MOON_RADIUS*2
+                                                    andEndScale:1-(float)(fmod(nextMoonScale, NEXT_MOON_RADIUS*2))/(NEXT_MOON_RADIUS*2)].CGPath];
 }
 
 - (void) showMoon{
@@ -100,6 +92,8 @@
     moonLayer.transform = CATransform3DConcat(CATransform3DMakeScale(.33, .33, 1), CATransform3DMakeRotation(-.125, 0, 0, 1));
     moonBGLayer.transform = CATransform3DMakeScale(.33, .33, 1);
 
+    nextMoonLayer.transform = CATransform3DMakeRotation(-.125, 0, 0, 1);
+    
     shadowLayer = [ShapeFactory shadowWithRadius:130];
     nextShadowLayer = [ShapeFactory shadowWithRadius:20];
     

@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "MoonView.h"
+#import "Moon.h"
 
-@interface MoonViewController : UIViewController
+@interface MoonViewController : UIViewController {
+    Moon *moon;
+    MoonView *moonView;
+    
+    int days;
+}
 
 @property (nonatomic, retain) MoonView *view;
 

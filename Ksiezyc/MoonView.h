@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ShapeFactory.h"
-#import "Moon.h"
 
 @interface MoonView : UIView {
     float height;
-    Moon *moon;
     
     CALayer *backgroundLayer, *backgroundTwoLayer;
     CALayer *moonLayer, *moonBGLayer, *nextMoonLayer, *nextMoonBGLayer;
@@ -20,12 +18,15 @@
     
     CATextLayer *nextMoonLabel;
     
-    int moonScale, nextMoonScale;
-        
-    NSTimer *scaleTimer, *nextScaleTimer;
+    float moonScale, nextMoonScale;
 }
 
 - (void) showMoon;
 - (void) animateBackground;
+
+- (void) setNextMoonText:(NSString *)string;
+
+- (void) animateMoonToPercentage:(float)percentage;
+- (void) animateNextMoonToPercentage:(float)percentage;
 
 @end

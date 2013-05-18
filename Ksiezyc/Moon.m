@@ -54,7 +54,7 @@
     return progress;
 }
 + (short) phaseWithProgress:(float) progress {
-    if (progress==0)return MOON_PHASE_NEW;
+    if (progress==0 || progress==30)return MOON_PHASE_NEW;
     if (progress==7.5) return MOON_PHASE_FIRST;
     if (progress==15) return MOON_PHASE_FULL;
     if (progress==22.5) return MOON_PHASE_THIRD;
@@ -62,7 +62,7 @@
     return MOON_PHASE_WITCHERING;
 }
 
-+ (float) percentWithProgress:(float)progress{
++ (float) percentageWithProgress:(float)progress{
     return progress/30;
 }
 
