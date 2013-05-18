@@ -22,13 +22,11 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    NSLog(@"Appear");
     [self.view showMoon];
     [self.view animateBackground];
 }
 
 - (void) backToBlack{
-    NSLog(@"Back to black!");
     [self.view animateBackground];
 }
 

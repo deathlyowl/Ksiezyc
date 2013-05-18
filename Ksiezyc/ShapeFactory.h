@@ -14,9 +14,11 @@
 
 + (CALayer *) moonWithRadius:(float)radius
                  andPosition:(CGPoint) position;
-+ (CALayer *)moonBG;
-+ (CAShapeLayer *) shadow;
++ (CALayer *)moonBGWithSize:(CGSize)size
+                andPosition:(CGPoint)position;
++ (CAShapeLayer *) shadowWithRadius:(float)radius;
 + (CALayer *)backgroundWithFrame:(CGRect)frame;
 + (CALayer *)backgroundTwoWithFrame:(CGRect)frame;
-
++ (CATextLayer *)labelWithBounds:(CGRect)bounds
+                     andPosition:(CGPoint)position;
 @end

@@ -15,12 +15,14 @@
     Moon *moon;
     
     CALayer *backgroundLayer, *backgroundTwoLayer;
-    CALayer *moonLayer, *moonBGLayer;
-    CAShapeLayer *shadowLayer;
+    CALayer *moonLayer, *moonBGLayer, *nextMoonLayer, *nextMoonBGLayer;
+    CAShapeLayer *shadowLayer, *nextShadowLayer;
     
-    int moonScale;
+    CATextLayer *nextMoonLabel;
+    
+    int moonScale, nextMoonScale;
         
-    NSTimer *scaleTimer;
+    NSTimer *scaleTimer, *nextScaleTimer;
 }
 
 - (void) showMoon;
