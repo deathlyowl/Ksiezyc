@@ -53,6 +53,7 @@
 - (float) progress {
     return progress;
 }
+
 + (short) phaseWithProgress:(float) progress {
     if (progress==0 || progress==30)return MOON_PHASE_NEW;
     if (progress==7.5) return MOON_PHASE_FIRST;

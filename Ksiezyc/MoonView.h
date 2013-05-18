@@ -16,9 +16,7 @@
     CALayer *moonLayer, *moonBGLayer, *nextMoonLayer, *nextMoonBGLayer;
     CAShapeLayer *shadowLayer, *nextShadowLayer;
     
-    CATextLayer *nextMoonLabel;
-    
-    float moonScale, nextMoonScale;
+    CATextLayer *nextMoonLabel;    
 }
 
 - (void) showMoon;

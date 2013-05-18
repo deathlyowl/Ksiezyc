@@ -16,7 +16,6 @@
         days = 0;
         moonView = [[MoonView alloc] init];
         moon = [Moon moonWithDate:[NSDate dateWithTimeIntervalSinceNow:0]];
-        NSLog(@"MOON: %f", moon.progress);
         self.view = moonView;
     }
     [self setLabel];
@@ -32,20 +31,30 @@
 }
 
 - (void) setLabel{
-    [moonView setNextMoonText:[NSString stringWithFormat:@"%@ za %i dni",
-                               [Moon phaseStringWithPhase:[Moon phaseWithProgress:moon.nextProgress]],
-                               (int)(moon.nextProgress-moon.progress)]];
+    int interval = (int)(moon.nextProgress-moon.progress);
+    
+    if (interval) {
+        [moonView setNextMoonText:[NSString stringWithFormat:@"%@ za %i dni",
+                                   [Moon phaseStringWithPhase:[Moon phaseWithProgress:moon.nextProgress]],
+                                   (int)(moon.nextProgress-moon.progress)]];
+    }
+    else{
+        [moonView setNextMoonText:[Moon phaseStringWithPhase:[Moon phaseWithProgress:moon.nextProgress]]];
+    }
+    
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [moonView showMoon];
     [moonView animateBackground];
-    
+    /*
     [NSTimer scheduledTimerWithTimeInterval:1
                                      target:self
                                    selector:@selector(tick)
                                    userInfo:nil
                                     repeats:YES];
+     */
      
 }
 
@@ -57,6 +66,7 @@
 }
 
 - (void) backToBlack{
+    [self tick];
     [moonView animateBackground];
 }
 

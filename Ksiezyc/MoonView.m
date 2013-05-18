@@ -19,7 +19,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setupLayers];
-        moonScale = nextMoonScale = 0;
     }
     return self;
 }
@@ -28,40 +27,26 @@
     [nextMoonLabel setString:string];
 }
 
-- (void) animateMoonToPercentage:(float)percentage{
-    moonScale = percentage * MOON_RADIUS*4;
-    
-    UIBezierPath *newPath = [UIBezierPath globeCurveWithRadius:MOON_RADIUS
-                                                    startScale:moonScale < MOON_RADIUS*2
-                                                   andEndScale:1-(float)(fmod(moonScale, MOON_RADIUS*2))/(MOON_RADIUS*2)];
-    
-    CABasicAnimation *connectorAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
-    connectorAnimation.duration = 1; //duration need to be less than the time it takes to fire handle timer again
-    connectorAnimation.cumulative = YES;
-    connectorAnimation.fromValue = (id)shadowLayer.path;
-    connectorAnimation.toValue = (id)newPath.CGPath;
-    [shadowLayer addAnimation:connectorAnimation forKey:@"animatePath"];
-    
-    [shadowLayer setPath:newPath.CGPath];
-    
-    /*
-    
+- (void) animateMoonToPercentage:(float)percentage{    
+    float start = percentage >= .5;
+    float end = fmod(percentage * 2, 1);
     [shadowLayer setPath:[UIBezierPath globeCurveWithRadius:MOON_RADIUS
-                                                 startScale:moonScale < MOON_RADIUS*2
-                                                andEndScale:1-(float)(fmod(moonScale, MOON_RADIUS*2))/(MOON_RADIUS*2)].CGPath];
-     */
+                                                 startScale:start
+                                                andEndScale:end].CGPath];
 }
 
 - (void) animateNextMoonToPercentage:(float)percentage{
-    nextMoonScale = percentage * NEXT_MOON_RADIUS * 4;
+    float start = !(percentage > .5);
+    float end = fmod(percentage * 2, 1);
+        
     [nextShadowLayer setPath:[UIBezierPath globeCurveWithRadius:NEXT_MOON_RADIUS
-                                                     startScale:nextMoonScale < NEXT_MOON_RADIUS*2
-                                                    andEndScale:1-(float)(fmod(nextMoonScale, NEXT_MOON_RADIUS*2))/(NEXT_MOON_RADIUS*2)].CGPath];
+                                                     startScale:start
+                                                    andEndScale:end].CGPath];
 }
 
 - (void) showMoon{
     [CATransaction setAnimationDuration:10];
-    moonLayer.transform = CATransform3DConcat(CATransform3DMakeScale(1, 1, 1), CATransform3DMakeRotation(-.125, 0, 0, 1));
+    moonLayer.transform = CATransform3DConcat(CATransform3DMakeScale(1, 1, 1), CATransform3DMakeRotation(M_PI + .2, 0, 0, 1));
     moonBGLayer.transform = CATransform3DMakeScale(1, 1, 1);
 }
 
@@ -89,10 +74,10 @@
                                  andPosition:CGPointMake(50, height-60)];
     
     
-    moonLayer.transform = CATransform3DConcat(CATransform3DMakeScale(.33, .33, 1), CATransform3DMakeRotation(-.125, 0, 0, 1));
+    moonLayer.transform = CATransform3DConcat(CATransform3DMakeScale(.33, .33, 1), CATransform3DMakeRotation(M_PI + .2, 0, 0, 1));
     moonBGLayer.transform = CATransform3DMakeScale(.33, .33, 1);
 
-    nextMoonLayer.transform = CATransform3DMakeRotation(-.125, 0, 0, 1);
+    nextMoonLayer.transform = CATransform3DMakeRotation(.2, 0, 0, 1);
     
     shadowLayer = [ShapeFactory shadowWithRadius:130];
     nextShadowLayer = [ShapeFactory shadowWithRadius:20];
