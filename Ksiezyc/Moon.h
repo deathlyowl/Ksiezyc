@@ -16,19 +16,19 @@
 #define MOON_PHASE_THIRD 5
 
 @interface Moon : NSObject {
-    float dayAndMonth;
+    float progress;
     NSDate *date;
 }
 
 - (id) initWithDate:(NSDate*) date;
 
-- (short) phase;
 - (void) calculate;
-- (short) nextPhase;
-- (short) nextPhaseInterval;
+- (float) nextProgress;
+- (float) progress;
 
 + (Moon*) moonWithDate:(NSDate*) date;
 + (NSString*) phaseStringWithPhase:(short) phase;
-+ (float) percentWithPhase:(short) phase;
++ (float) percentWithProgress:(float) progress;
++ (short) phaseWithProgress:(float) progress;
 
 @end

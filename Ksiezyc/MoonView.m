@@ -33,7 +33,7 @@
                                                  startScale:moonScale < 260
                                                 andEndScale:1-(float)(moonScale%260)/260].CGPath];
     
-    if (moonScale == (int)(520 * moon.percent)) [scaleTimer invalidate];
+    if (moonScale == (int)(520 * [Moon percentWithProgress:moon.progress])) [scaleTimer invalidate];
 }
 
 - (void) showMoon{

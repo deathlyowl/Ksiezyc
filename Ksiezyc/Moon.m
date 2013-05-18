@@ -38,21 +38,30 @@
     remainder *= 11;
     remainder %= 30;
     
-    dayAndMonth = remainder + day + month + .5*(hour>12);
-    if (year>2000) dayAndMonth -= 8;
+    progress = remainder + day + month + .5*(hour>12);
+    if (year>2000) progress -= 8;
 }
 
-- (short) phase {
-    if (dayAndMonth==0)return MOON_PHASE_NEW;
-    if (dayAndMonth==7.5) return MOON_PHASE_FIRST;
-    if (dayAndMonth==15) return MOON_PHASE_FULL;
-    if (dayAndMonth==22.5) return MOON_PHASE_THIRD;
-    if (dayAndMonth<15 && dayAndMonth>0) return MOON_PHASE_GROWING;
+- (float) nextProgress {
+    int tmp = progress/7.5;
+    tmp ++;
+    return tmp*7.5;
+}
+
+- (float) progress {
+    return progress;
+}
++ (short) phaseWithProgress:(float) progress {
+    if (progress==0)return MOON_PHASE_NEW;
+    if (progress==7.5) return MOON_PHASE_FIRST;
+    if (progress==15) return MOON_PHASE_FULL;
+    if (progress==22.5) return MOON_PHASE_THIRD;
+    if (progress<15 && progress>0) return MOON_PHASE_GROWING;
     return MOON_PHASE_WITCHERING;
 }
 
-+ (float) percentWithPhase:(short)phase {
-    return dayAndMonth/30;
++ (float) percentWithProgress:(float)progress{
+    return progress/30;
 }
 
 + (NSString*) phaseStringWithPhase:(short) phase {
