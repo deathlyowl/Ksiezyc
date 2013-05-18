@@ -13,11 +13,23 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) self.view = [[MoonView alloc] init];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(backToBlack)
+                                                 name:@"Active"
+                                               object:nil];
     return self;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    NSLog(@"Appear");
     [self.view showMoon];
+    [self.view animateBackground];
+}
+
+- (void) backToBlack{
+    NSLog(@"Back to black!");
+    [self.view animateBackground];
 }
 
 @end

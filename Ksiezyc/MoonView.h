@@ -14,7 +14,7 @@
     float height;
     Moon *moon;
     
-    CALayer *backgroundLayer;
+    CALayer *backgroundLayer, *backgroundTwoLayer;
     CALayer *moonLayer, *moonBGLayer;
     CAShapeLayer *shadowLayer;
     
@@ -24,5 +24,6 @@
 }
 
 - (void) showMoon;
+- (void) animateBackground;
 
 @end

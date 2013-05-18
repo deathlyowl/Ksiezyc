@@ -61,6 +61,19 @@
     return layer;
 }
 
+
+
++ (CALayer *)backgroundTwoWithFrame:(CGRect)frame{
+    CALayer *layer = [self rectWithBounds:frame
+                              anchorPoint:CGPointMake(.5, .5)
+                              andPosition:CGPointMake(frame.size.width/4, frame.size.height/2)];
+    [layer setBounds:frame];
+    
+    layer.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundTwo"]].CGColor;
+    
+    return layer;
+}
+
 + (CALayer *)moonBG{
     CALayer *layer = [self circleWithRadius:130 andPosition:CGPointMake(160, 160)];
     layer.cornerRadius = 130;
@@ -68,8 +81,9 @@
     return layer;
 }
 
-+ (CALayer *) moon{
-    CALayer *layer = [self circleWithRadius:130 andPosition:CGPointMake(160, 160)];
++ (CALayer *) moonWithRadius:(float)radius andPosition:(CGPoint) position{
+    CALayer *layer = [self circleWithRadius:radius
+                                andPosition:position];
     layer.cornerRadius = 130;
     layer.backgroundColor = [UIColor colorWithHue:0.11f saturation:0.04f brightness:0.82f alpha:1.00f].CGColor;
     return layer;

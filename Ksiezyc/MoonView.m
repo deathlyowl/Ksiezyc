@@ -22,6 +22,7 @@
                                                     selector:@selector(scaler)
                                                     userInfo:nil
                                                      repeats:YES];
+        
     }
     return self;
 }
@@ -49,19 +50,12 @@
     
     moonBGLayer = [ShapeFactory moonBG];
     
-    moonLayer = [ShapeFactory moon];
+    moonLayer = [ShapeFactory moonWithRadius:130
+                                 andPosition:CGPointMake(160, 160)];
     moonLayer.transform = CATransform3DConcat(CATransform3DMakeScale(.33, .33, 1), CATransform3DMakeRotation(-.125, 0, 0, 1));
     moonBGLayer.transform = CATransform3DMakeScale(.33, .33, 1);
 
     shadowLayer = [ShapeFactory shadow];
-    
-    CATransform3D transform = CATransform3DMakeRotation(1, 0, 0, 1.0);
-    CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"transform"];
-    animation.toValue = [NSValue valueWithCATransform3D:transform];
-    
-    animation.duration = 10;
-    animation.cumulative = YES;
-    animation.repeatCount = 10000;
     
     CABasicAnimation *alphaAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     alphaAnimation.fromValue = [NSNumber numberWithFloat:0];
@@ -70,16 +64,36 @@
     alphaAnimation.cumulative = YES;
     
     backgroundLayer = [ShapeFactory backgroundWithFrame:CGRectMake(0, 0, 320*2, height)];
+    backgroundTwoLayer = [ShapeFactory backgroundTwoWithFrame:CGRectMake(0, 0, 320*2, height)];
     backgroundLayer.shouldRasterize = YES;
     
-    [backgroundLayer addAnimation:animation forKey:@"frame"];
     [backgroundLayer addAnimation:alphaAnimation forKey:@"opacity"];
+    [backgroundTwoLayer addAnimation:alphaAnimation forKey:@"opacity"];
 
     [moonLayer setMask:shadowLayer];
     
+    [self.layer addSublayer:backgroundTwoLayer];
     [self.layer addSublayer:backgroundLayer];
     [self.layer addSublayer:moonBGLayer];
     [self.layer addSublayer:moonLayer];
+}
+
+- (void) animateBackground {
+    CATransform3D transform = CATransform3DMakeRotation(1, 0, 0, 1.0);
+    CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"transform"];
+    animation.toValue = [NSValue valueWithCATransform3D:transform];
+    animation.duration = 10;
+    animation.cumulative = YES;
+    animation.repeatCount = 10000;
+    
+    CABasicAnimation* animationTwo = [CABasicAnimation animationWithKeyPath:@"transform"];
+    animationTwo.toValue = [NSValue valueWithCATransform3D:transform];
+    animationTwo.duration = 20;
+    animationTwo.cumulative = YES;
+    animationTwo.repeatCount = 10000;
+    
+    [backgroundLayer addAnimation:animation forKey:@"frame"];
+    [backgroundTwoLayer addAnimation:animationTwo forKey:@"frame"];
 }
 
 @end

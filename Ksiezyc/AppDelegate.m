@@ -20,4 +20,10 @@
     return YES;
 }
 
+- (void)applicationDidBecomeActive:(UIApplication *)application{
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:@"Active"
+     object:self];
+}
+
 @end
