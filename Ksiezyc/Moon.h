@@ -23,10 +23,12 @@
 - (id) initWithDate:(NSDate*) date;
 
 - (short) phase;
-- (NSString*) phaseString;
-- (float) percent;
 - (void) calculate;
+- (short) nextPhase;
+- (short) nextPhaseInterval;
 
 + (Moon*) moonWithDate:(NSDate*) date;
++ (NSString*) phaseStringWithPhase:(short) phase;
++ (float) percentWithPhase:(short) phase;
 
 @end

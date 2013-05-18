@@ -39,7 +39,7 @@
     remainder %= 30;
     
     dayAndMonth = remainder + day + month + .5*(hour>12);
-    if (year>2000) dayAndMonth -= 8;    
+    if (year>2000) dayAndMonth -= 8;
 }
 
 - (short) phase {
@@ -51,12 +51,12 @@
     return MOON_PHASE_WITCHERING;
 }
 
-- (float) percent {
++ (float) percentWithPhase:(short)phase {
     return dayAndMonth/30;
 }
 
-- (NSString*) phaseString {
-    switch (self.phase) {
++ (NSString*) phaseStringWithPhase:(short) phase {
+    switch (phase) {
         case MOON_PHASE_FIRST: return @"Faza Pierwsza";
         case MOON_PHASE_NEW: return @"Nów";
         case MOON_PHASE_THIRD: return @"Faza Trzecia";
