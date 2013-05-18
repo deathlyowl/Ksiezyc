@@ -19,11 +19,14 @@
     float dayAndMonth;
     NSDate *date;
 }
+
+- (id) initWithDate:(NSDate*) date;
+
 - (short) phase;
 - (NSString*) phaseString;
 - (float) percent;
 - (void) calculate;
-- (id) initWithDate:(NSDate*) date;
+
 + (Moon*) moonWithDate:(NSDate*) date;
 
 @end
