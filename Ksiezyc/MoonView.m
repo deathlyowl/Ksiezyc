@@ -21,7 +21,7 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self){
-        angle = -15 * M_PI/180.;
+        angle = -10 * M_PI/180.;
         [self setupLayers];
         [self setBackgroundColor:BACKGROUND_COLOR];
     }
