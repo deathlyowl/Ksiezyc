@@ -8,8 +8,13 @@
 
 #define HEIGHT UIScreen.mainScreen.bounds.size.height
 #define WIDTH UIScreen.mainScreen.bounds.size.width
+#define ROTATIONAL_BACKGROUND_SIZE 830
 
 #define BACKGROUND_COLOR [UIColor colorWithRed:.05 green:.1 blue:.13 alpha:1]
+#define FAR_BACKGROUND_COLOR [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundFar"]]
+#define NEAR_BACKGROUND_COLOR [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundNear"]]
+#define MOON_COLOR [UIColor colorWithHue:0.11f saturation:0.04f brightness:0.82f alpha:1.00f]
+#define DARK_SIDE_OF_THE_MOON_COLOR [UIColor colorWithRed:.06 green:.11 blue:.14 alpha:1]
 
 #ifndef __IPHONE_5_0
 #warning "This project uses features only available in iOS SDK 5.0 and later."

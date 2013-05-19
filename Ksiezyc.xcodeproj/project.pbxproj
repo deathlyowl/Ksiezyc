@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA4F819617465A4E00782BC4 /* UIBezierPath+UIGlobeBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4F819517465A4E00782BC4 /* UIBezierPath+UIGlobeBezierPath.m */; };
-		FA4F81981746633B00782BC4 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4F81971746633B00782BC4 /* background.png */; };
+		FA4F81981746633B00782BC4 /* backgroundNear.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4F81971746633B00782BC4 /* backgroundNear.png */; };
 		FA57C273174570B9000ACB24 /* MoonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA57C272174570B9000ACB24 /* MoonViewController.m */; };
 		FA57C27617457132000ACB24 /* ShapeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FA57C27517457132000ACB24 /* ShapeFactory.m */; };
 		FA57C27917458CA5000ACB24 /* Moon.m in Sources */ = {isa = PBXBuildFile; fileRef = FA57C27817458CA5000ACB24 /* Moon.m */; };
@@ -25,13 +25,13 @@
 		FA5A518C17454FD6001B46F9 /* MoonView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5A518B17454FD6001B46F9 /* MoonView.m */; };
 		FA5A518E1745504B001B46F9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A518D1745504B001B46F9 /* QuartzCore.framework */; };
 		FAF6B0341747B26100ADCD62 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF6B0331747B26100ADCD62 /* Icon@2x.png */; };
-		FAF6B0361747B6ED00ADCD62 /* backgroundTwo.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF6B0351747B6ED00ADCD62 /* backgroundTwo.png */; };
+		FAF6B0361747B6ED00ADCD62 /* backgroundFar.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF6B0351747B6ED00ADCD62 /* backgroundFar.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FA4F819417465A4E00782BC4 /* UIBezierPath+UIGlobeBezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+UIGlobeBezierPath.h"; sourceTree = "<group>"; };
 		FA4F819517465A4E00782BC4 /* UIBezierPath+UIGlobeBezierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+UIGlobeBezierPath.m"; sourceTree = "<group>"; };
-		FA4F81971746633B00782BC4 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		FA4F81971746633B00782BC4 /* backgroundNear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundNear.png; sourceTree = "<group>"; };
 		FA57C271174570B9000ACB24 /* MoonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonViewController.h; sourceTree = "<group>"; };
 		FA57C272174570B9000ACB24 /* MoonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonViewController.m; sourceTree = "<group>"; };
 		FA57C27417457132000ACB24 /* ShapeFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeFactory.h; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 		FA5A518B17454FD6001B46F9 /* MoonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonView.m; sourceTree = "<group>"; };
 		FA5A518D1745504B001B46F9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FAF6B0331747B26100ADCD62 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
-		FAF6B0351747B6ED00ADCD62 /* backgroundTwo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundTwo.png; sourceTree = "<group>"; };
+		FAF6B0351747B6ED00ADCD62 /* backgroundFar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundFar.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,14 +125,14 @@
 		FA5A516C17454B66001B46F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				FAF6B0351747B6ED00ADCD62 /* backgroundTwo.png */,
-				FAF6B0331747B26100ADCD62 /* Icon@2x.png */,
+				FA5A517317454B66001B46F9 /* Ksiezyc-Prefix.pch */,
+				FA4F81971746633B00782BC4 /* backgroundNear.png */,
+				FAF6B0351747B6ED00ADCD62 /* backgroundFar.png */,
 				FA57C27A1745985B000ACB24 /* Icon.png */,
-				FA4F81971746633B00782BC4 /* background.png */,
+				FAF6B0331747B26100ADCD62 /* Icon@2x.png */,
 				FA5A516D17454B66001B46F9 /* Ksiezyc-Info.plist */,
 				FA5A516E17454B66001B46F9 /* InfoPlist.strings */,
 				FA5A517117454B66001B46F9 /* main.m */,
-				FA5A517317454B66001B46F9 /* Ksiezyc-Prefix.pch */,
 				FA5A517717454B66001B46F9 /* Default.png */,
 				FA5A517917454B66001B46F9 /* Default@2x.png */,
 				FA5A517B17454B66001B46F9 /* Default-568h@2x.png */,
@@ -196,9 +196,9 @@
 				FA5A517A17454B66001B46F9 /* Default@2x.png in Resources */,
 				FA5A517C17454B66001B46F9 /* Default-568h@2x.png in Resources */,
 				FA57C27B1745985B000ACB24 /* Icon.png in Resources */,
-				FA4F81981746633B00782BC4 /* background.png in Resources */,
+				FA4F81981746633B00782BC4 /* backgroundNear.png in Resources */,
 				FAF6B0341747B26100ADCD62 /* Icon@2x.png in Resources */,
-				FAF6B0361747B6ED00ADCD62 /* backgroundTwo.png in Resources */,
+				FAF6B0361747B6ED00ADCD62 /* backgroundFar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

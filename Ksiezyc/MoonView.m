@@ -31,16 +31,18 @@
 - (void) setupLayers{    
     // Używając fabryki, tworzymy wszystkie warstwy
     nextMoonLabel = [ShapeFactory labelWithBounds:CGRectMake(0, 0, 260, 40) andPosition:CGPointMake(WIDTH/2, HEIGHT-55)];
-    moonBGLayer = [ShapeFactory moonBGWithSize:CGSizeMake(MOON_RADIUS*2, MOON_RADIUS*2) andPosition:CGPointMake(WIDTH/2, WIDTH/2)];
-    nextMoonBGLayer = [ShapeFactory moonBGWithSize:CGSizeMake(MOON_RADIUS*2, NEXT_MOON_RADIUS*2) andPosition:CGPointMake(WIDTH/2, HEIGHT-60)];
+    moonBGLayer = [ShapeFactory moonBackgroundWithSize:CGSizeMake(MOON_RADIUS*2, MOON_RADIUS*2) andPosition:CGPointMake(WIDTH/2, WIDTH/2)];
+    nextMoonBGLayer = [ShapeFactory moonBackgroundWithSize:CGSizeMake(MOON_RADIUS*2, NEXT_MOON_RADIUS*2) andPosition:CGPointMake(WIDTH/2, HEIGHT-60)];
     moonLayer = [ShapeFactory moonWithRadius:MOON_RADIUS andPosition:CGPointMake(WIDTH/2, WIDTH/2)];
     nextMoonLayer = [ShapeFactory moonWithRadius:NEXT_MOON_RADIUS andPosition:CGPointMake(50, HEIGHT-60)];
     
-    shadowLayer = [ShapeFactory shadowWithRadius:MOON_RADIUS];
-    nextShadowLayer = [ShapeFactory shadowWithRadius:NEXT_MOON_RADIUS];
+    shadowLayer = [CAShapeLayer layer];
+    nextShadowLayer = [CAShapeLayer layer];
     
-    nearBackgroundLayer = [ShapeFactory backgroundWithFrame:CGRectMake(0, 0, WIDTH*2, HEIGHT)];
-    farBackgroundLayer = [ShapeFactory backgroundTwoWithFrame:CGRectMake(0, 0, WIDTH*2, HEIGHT)];
+    nearBackgroundLayer = [ShapeFactory background];
+    farBackgroundLayer = [ShapeFactory background];
+    [nearBackgroundLayer setBackgroundColor:NEAR_BACKGROUND_COLOR.CGColor];
+    [farBackgroundLayer setBackgroundColor:FAR_BACKGROUND_COLOR.CGColor];
     
     moonLayer.transform = CATransform3DConcat(CATransform3DMakeScale(INITIAL_SCALE, INITIAL_SCALE, 1), CATransform3DMakeRotation(angle, 0, 0, 1));
     moonBGLayer.transform = CATransform3DMakeScale(INITIAL_SCALE, INITIAL_SCALE, 1);

@@ -7,7 +7,6 @@
 //
 
 #import "UIBezierPath+UIGlobeBezierPath.h"
-#import <math.h>
 
 @implementation UIBezierPath (UIGlobeBezierPath)
 
