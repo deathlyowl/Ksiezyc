@@ -44,6 +44,8 @@
 }
 
 - (float) nextProgress {
+    if (!fmod(progress, 7.5)) return fmod(progress,30);
+    
     int tmp = progress/7.5;
     tmp ++;
     float nextProgress = tmp*7.5;

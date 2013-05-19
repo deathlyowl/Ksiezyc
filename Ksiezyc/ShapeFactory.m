@@ -51,7 +51,6 @@
 
 + (CAShapeLayer *) shadowWithRadius:(float)radius{
     CAShapeLayer *layer = [CAShapeLayer layer];
-    
     UIBezierPath *path = [[UIBezierPath alloc] init];
     
     [path moveToPoint:CGPointMake(radius, 0)];

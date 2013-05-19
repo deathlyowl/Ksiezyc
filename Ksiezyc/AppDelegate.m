@@ -22,7 +22,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application{
     [[NSNotificationCenter defaultCenter]
-     postNotificationName:@"Active"
+     postNotificationName:BECOME_ACTIVE_NOTIFICATION_NAME
      object:self];
 }
 

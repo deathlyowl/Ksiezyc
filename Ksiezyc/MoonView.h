@@ -10,9 +10,9 @@
 #import "ShapeFactory.h"
 
 @interface MoonView : UIView {
-    float height;
+    float angle;
     
-    CALayer *backgroundLayer, *backgroundTwoLayer;
+    CALayer *nearBackgroundLayer, *farBackgroundLayer;
     CALayer *moonLayer, *moonBGLayer, *nextMoonLayer, *nextMoonBGLayer;
     CAShapeLayer *shadowLayer, *nextShadowLayer;
     

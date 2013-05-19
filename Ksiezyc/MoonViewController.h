@@ -13,8 +13,7 @@
 @interface MoonViewController : UIViewController {
     Moon *moon;
     MoonView *moonView;
-    
-    int day;
+    float day;
 }
 
 @property (nonatomic, retain) MoonView *view;

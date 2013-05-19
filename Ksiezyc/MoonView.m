@@ -12,117 +12,116 @@
 
 #define MOON_RADIUS 130
 #define NEXT_MOON_RADIUS 20
+#define INITIAL_SCALE .33
+
+#pragma mark -
 
 @implementation MoonView
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (self) [self setupLayers];
+    if (self){
+        angle = -15 * M_PI/180.;
+        [self setupLayers];
+        [self setBackgroundColor:BACKGROUND_COLOR];
+    }
     return self;
 }
+
+- (void) setupLayers{    
+    // Używając fabryki, tworzymy wszystkie warstwy
+    nextMoonLabel = [ShapeFactory labelWithBounds:CGRectMake(0, 0, 260, 40) andPosition:CGPointMake(WIDTH/2, HEIGHT-55)];
+    moonBGLayer = [ShapeFactory moonBGWithSize:CGSizeMake(MOON_RADIUS*2, MOON_RADIUS*2) andPosition:CGPointMake(WIDTH/2, WIDTH/2)];
+    nextMoonBGLayer = [ShapeFactory moonBGWithSize:CGSizeMake(MOON_RADIUS*2, NEXT_MOON_RADIUS*2) andPosition:CGPointMake(WIDTH/2, HEIGHT-60)];
+    moonLayer = [ShapeFactory moonWithRadius:MOON_RADIUS andPosition:CGPointMake(WIDTH/2, WIDTH/2)];
+    nextMoonLayer = [ShapeFactory moonWithRadius:NEXT_MOON_RADIUS andPosition:CGPointMake(50, HEIGHT-60)];
+    
+    shadowLayer = [ShapeFactory shadowWithRadius:MOON_RADIUS];
+    nextShadowLayer = [ShapeFactory shadowWithRadius:NEXT_MOON_RADIUS];
+    
+    nearBackgroundLayer = [ShapeFactory backgroundWithFrame:CGRectMake(0, 0, WIDTH*2, HEIGHT)];
+    farBackgroundLayer = [ShapeFactory backgroundTwoWithFrame:CGRectMake(0, 0, WIDTH*2, HEIGHT)];
+    
+    moonLayer.transform = CATransform3DConcat(CATransform3DMakeScale(INITIAL_SCALE, INITIAL_SCALE, 1), CATransform3DMakeRotation(angle, 0, 0, 1));
+    moonBGLayer.transform = CATransform3DMakeScale(INITIAL_SCALE, INITIAL_SCALE, 1);
+    nextMoonLayer.transform = CATransform3DMakeRotation(angle, 0, 0, 1);
+    
+    // I tapetujemy
+    // Tło
+    [self.layer addSublayer:farBackgroundLayer];
+    [self.layer addSublayer:nearBackgroundLayer];
+    
+    // Księżyc
+    [moonLayer setMask:shadowLayer];
+    [self.layer addSublayer:moonBGLayer];
+    [self.layer addSublayer:moonLayer];
+    
+    // Dolna etykietka
+    [nextMoonLayer setMask:nextShadowLayer];
+    [self.layer addSublayer:nextMoonBGLayer];
+    [self.layer addSublayer:nextMoonLayer];
+    [self.layer addSublayer:nextMoonLabel];
+}
+
+#pragma mark -
+#pragma mark Pozycjonowanie
 
 - (void) setNextMoonText:(NSString *)string{
     [nextMoonLabel setString:string];
 }
 
-- (void) animateMoonToPercentage:(float)percentage{    
-    float start = percentage >= .5;
-    float end = fmod(percentage * 2, 1);
-    [shadowLayer setPath:[UIBezierPath globeCurveWithRadius:MOON_RADIUS
-                                                 startScale:start
-                                                andEndScale:end].CGPath];
+- (void) animateMoonToPercentage:(float)percentage{
+    [self animateLayer:shadowLayer
+            withRadius:MOON_RADIUS
+          toPercentage:percentage];
 }
 
 - (void) animateNextMoonToPercentage:(float)percentage{
-    float start = !(percentage > .5);
-    float end = fmod(percentage * 2, 1);
-        
-    [nextShadowLayer setPath:[UIBezierPath globeCurveWithRadius:NEXT_MOON_RADIUS
-                                                     startScale:start
-                                                    andEndScale:end].CGPath];
+    [self animateLayer:nextShadowLayer
+            withRadius:NEXT_MOON_RADIUS
+          toPercentage:percentage];
 }
+
+- (void) animateLayer:(CAShapeLayer *)layer
+           withRadius:(float)radius
+         toPercentage:(float)percentage{
+    [layer setPath:[UIBezierPath globeCurveWithRadius:radius
+                                           startScale:percentage >= .5
+                                          andEndScale:fmod(percentage * 2, 1)].CGPath];
+}
+
+#pragma mark -
+#pragma mark Animacje
 
 - (void) showMoon{
     [CATransaction setAnimationDuration:10];
-    moonLayer.transform = CATransform3DConcat(CATransform3DMakeScale(1, 1, 1), CATransform3DMakeRotation(M_PI + .2, 0, 0, 1));
+    moonLayer.transform = CATransform3DConcat(CATransform3DMakeScale(1, 1, 1), CATransform3DMakeRotation(angle, 0, 0, 1));
     moonBGLayer.transform = CATransform3DMakeScale(1, 1, 1);
-}
-
-
-- (void) setupLayers{
-    // Niezbędna wysokość urządzenia
-    height = [UIScreen mainScreen].bounds.size.height;
-    
-    nextMoonLabel = [ShapeFactory labelWithBounds:CGRectMake(0, 0, 260, 40) andPosition:CGPointMake(160, height-55)];
-    
-    self.backgroundColor = [UIColor colorWithRed:.05 green:.1 blue:.13 alpha:1];
-    
-    moonBGLayer = [ShapeFactory moonBGWithSize:CGSizeMake(260, 260)
-                                   andPosition:CGPointMake(160, 160)];
-    
-    moonLayer = [ShapeFactory moonWithRadius:130
-                                 andPosition:CGPointMake(160, 160)];
-    
-    
-    nextMoonBGLayer = [ShapeFactory moonBGWithSize:CGSizeMake(260, 40)
-                                   andPosition:CGPointMake(160, height-60)];
-    
-    
-    nextMoonLayer = [ShapeFactory moonWithRadius:20
-                                 andPosition:CGPointMake(50, height-60)];
-    
-    
-    moonLayer.transform = CATransform3DConcat(CATransform3DMakeScale(.33, .33, 1), CATransform3DMakeRotation(M_PI + .2, 0, 0, 1));
-    moonBGLayer.transform = CATransform3DMakeScale(.33, .33, 1);
-
-    nextMoonLayer.transform = CATransform3DMakeRotation(.2, 0, 0, 1);
-    
-    shadowLayer = [ShapeFactory shadowWithRadius:130];
-    nextShadowLayer = [ShapeFactory shadowWithRadius:20];
     
     CABasicAnimation *alphaAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     alphaAnimation.fromValue = [NSNumber numberWithFloat:0];
     alphaAnimation.toValue = [NSNumber numberWithFloat:1];
     alphaAnimation.duration = 5;
-    alphaAnimation.cumulative = YES;
     
-    backgroundLayer = [ShapeFactory backgroundWithFrame:CGRectMake(0, 0, 320*2, height)];
-    backgroundTwoLayer = [ShapeFactory backgroundTwoWithFrame:CGRectMake(0, 0, 320*2, height)];
-    backgroundLayer.shouldRasterize = YES;
-    
-    [backgroundLayer addAnimation:alphaAnimation forKey:@"opacity"];
-    [backgroundTwoLayer addAnimation:alphaAnimation forKey:@"opacity"];
-
-    [moonLayer setMask:shadowLayer];
-    [nextMoonLayer setMask:nextShadowLayer];
-    
-    [self.layer addSublayer:backgroundTwoLayer];
-    [self.layer addSublayer:backgroundLayer];
-    [self.layer addSublayer:moonBGLayer];
-    [self.layer addSublayer:moonLayer];
-    [self.layer addSublayer:nextMoonBGLayer];
-    
-    [self.layer addSublayer:nextMoonLayer];
-    
-    [self.layer addSublayer:nextMoonLabel];
+    [nearBackgroundLayer addAnimation:alphaAnimation forKey:@"opacity"];
+    [farBackgroundLayer addAnimation:alphaAnimation forKey:@"opacity"];
 }
 
 - (void) animateBackground {
+    // Zakręć tło
     CATransform3D transform = CATransform3DMakeRotation(1, 0, 0, 1.0);
-    CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"transform"];
-    animation.toValue = [NSValue valueWithCATransform3D:transform];
-    animation.duration = 10;
-    animation.cumulative = YES;
-    animation.repeatCount = 10000;
+
+    CABasicAnimation* animationNear = [CABasicAnimation animationWithKeyPath:@"transform"];
+    CABasicAnimation* animationFar = [CABasicAnimation animationWithKeyPath:@"transform"];
+
+    animationNear.toValue = animationFar.toValue = [NSValue valueWithCATransform3D:transform];
+    animationNear.duration = 10;    // Efekt paralaksy uzyskany, dzięki różnej prędkości
+    animationFar.duration = 20;     // kątowej obrotu jednego i drugiego tła.
+    animationNear.cumulative = animationFar.cumulative = YES;
+    animationNear.repeatCount = animationFar.repeatCount = 10000;
     
-    CABasicAnimation* animationTwo = [CABasicAnimation animationWithKeyPath:@"transform"];
-    animationTwo.toValue = [NSValue valueWithCATransform3D:transform];
-    animationTwo.duration = 20;
-    animationTwo.cumulative = YES;
-    animationTwo.repeatCount = 10000;
-    
-    [backgroundLayer addAnimation:animation forKey:@"frame"];
-    [backgroundTwoLayer addAnimation:animationTwo forKey:@"frame"];
+    [nearBackgroundLayer addAnimation:animationNear forKey:@"frame"];
+    [farBackgroundLayer addAnimation:animationFar forKey:@"frame"];
 }
 
 @end

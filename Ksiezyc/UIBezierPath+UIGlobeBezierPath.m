@@ -16,8 +16,8 @@
                             andEndScale:(float)endScale
 {
     UIBezierPath *path = [[UIBezierPath alloc] init];
-    float startPoint = (2*radius) * startScale;
-    float endPoint = (2*radius) * endScale;
+    float startPoint = (2*radius) * (1-startScale);
+    float endPoint = (2*radius) * (1-endScale);
         
     [path moveToPoint:CGPointMake(radius, 0)];
 
