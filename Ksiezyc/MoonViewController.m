@@ -34,12 +34,27 @@
     return self;
 }
 
+#pragma mark -
+#pragma mark Lifecycle
+- (void) viewDidAppear:(BOOL)animated {
+    [moonView showMoon];
+    [moonView animateBackground];
+}
+
 - (void) reloadInputViews {
     [self setLabel];
     [moonView animateMoonToPercentage:[Moon percentageWithProgress:moon.progress]];
     [moonView animateNextMoonToPercentage:[Moon percentageWithProgress:moon.nextProgress]];
 }
 
+- (void) becomeActive {
+    moon = [Moon moonWithDate:[NSDate dateWithTimeIntervalSinceNow:day*24*60*60]];
+    [self reloadInputViews];
+    [moonView animateBackground];
+}
+
+#pragma mark -
+#pragma mark Helpers
 - (void) setLabel {
     float interval = moon.nextProgress - moon.progress;
     if (interval < 0) interval += 30;
@@ -51,17 +66,8 @@
     else [moonView setNextMoonText:[Moon phaseStringWithPhase:[Moon phaseWithProgress:moon.nextProgress]]];
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    [moonView showMoon];
-    [moonView animateBackground];
-}
-
-- (void) becomeActive {
-    moon = [Moon moonWithDate:[NSDate dateWithTimeIntervalSinceNow:day*24*60*60]];
-    [self reloadInputViews];
-    [moonView animateBackground];
-}
-
+#pragma mark -
+#pragma mark Actions
 - (void) horizontalSwipe:(UISwipeGestureRecognizer *) sender {
     day += .5 * (UISwipeGestureRecognizerDirectionLeft == sender.direction) +
           -.5 * (UISwipeGestureRecognizerDirectionRight == sender.direction);
