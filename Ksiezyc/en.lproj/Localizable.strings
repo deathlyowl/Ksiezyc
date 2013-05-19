@@ -11,7 +11,7 @@
 "FullMoon" = "full moon";
 "NewMoon" = "new moon";
 
-"OneDay" = "tomorrow %@";
+"OneDay" = "%@ tomorrow";
 "MoreThanOneDay" = "%@ in %.0f days";
 
 "Hours" = "%@ in %d hours";

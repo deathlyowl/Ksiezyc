@@ -74,4 +74,17 @@
     return label;
 }
 
++ (CATextLayer *)titleLabel{
+    CATextLayer *label = [[CATextLayer alloc] init];
+    [label setFont:@"AvenirNextCondensed-DemiBoldItalic"];
+    [label setFontSize:40];
+    [label setAnchorPoint:CGPointMake(0, 0)];
+    [label setBounds:CGRectMake(0, 0, WIDTH, HEIGHT)];
+    [label setPosition:CGPointMake(0, HEIGHT/2 - 40)];
+    [label setAlignmentMode:kCAAlignmentCenter];
+    [label setForegroundColor:MOON_COLOR.CGColor];
+    [label setString:@"Księżyc"];
+    return label;
+}
+
 @end

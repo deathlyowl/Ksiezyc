@@ -13,7 +13,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        day = 3;
+        day = 0;
         moonView = [[MoonView alloc] init];
         self.view = moonView;
     }
@@ -21,7 +21,7 @@
                                              selector:@selector(becomeActive)
                                                  name:BECOME_ACTIVE_NOTIFICATION_NAME
                                             object:nil];
-    
+    /*
     UISwipeGestureRecognizer *leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(horizontalSwipe:)];
     UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(horizontalSwipe:)];
     
@@ -30,7 +30,7 @@
     
     [moonView addGestureRecognizer:leftSwipe];
     [moonView addGestureRecognizer:rightSwipe];
-    
+    */
     return self;
 }
 

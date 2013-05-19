@@ -31,6 +31,9 @@
 - (void) setupLayers{    
     // Używając fabryki, tworzymy wszystkie warstwy
     nextMoonLabel = [ShapeFactory labelWithBounds:CGRectMake(0, 0, 260, 40) andPosition:CGPointMake(WIDTH/2, HEIGHT-55)];
+    
+    titleLabel = [ShapeFactory titleLabel];
+    
     moonBGLayer = [ShapeFactory moonBackgroundWithSize:CGSizeMake(MOON_RADIUS*2, MOON_RADIUS*2) andPosition:CGPointMake(WIDTH/2, WIDTH/2)];
     nextMoonBGLayer = [ShapeFactory moonBackgroundWithSize:CGSizeMake(MOON_RADIUS*2, NEXT_MOON_RADIUS*2) andPosition:CGPointMake(WIDTH/2, HEIGHT-60)];
     moonLayer = [ShapeFactory moonWithRadius:MOON_RADIUS andPosition:CGPointMake(WIDTH/2, WIDTH/2)];
@@ -48,11 +51,15 @@
     moonBGLayer.transform = CATransform3DMakeScale(INITIAL_SCALE, INITIAL_SCALE, 1);
     nextMoonLayer.transform = CATransform3DMakeRotation(angle, 0, 0, 1);
     
+    
     // I tapetujemy
+    // Splash
+    //[self.layer addSublayer:titleLabel];
+
     // Tło
     [self.layer addSublayer:farBackgroundLayer];
     [self.layer addSublayer:nearBackgroundLayer];
-    
+
     // Księżyc
     [moonLayer setMask:shadowLayer];
     [self.layer addSublayer:moonBGLayer];
@@ -100,13 +107,27 @@
     moonLayer.transform = CATransform3DConcat(CATransform3DMakeScale(1, 1, 1), CATransform3DMakeRotation(angle, 0, 0, 1));
     moonBGLayer.transform = CATransform3DMakeScale(1, 1, 1);
     
-    CABasicAnimation *alphaAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    alphaAnimation.fromValue = [NSNumber numberWithFloat:0];
-    alphaAnimation.toValue = [NSNumber numberWithFloat:1];
-    alphaAnimation.duration = 5;
+    CABasicAnimation *showSlowly = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    CABasicAnimation *showFast = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    CABasicAnimation *hideFast = [CABasicAnimation animationWithKeyPath:@"opacity"];
     
-    [nearBackgroundLayer addAnimation:alphaAnimation forKey:@"opacity"];
-    [farBackgroundLayer addAnimation:alphaAnimation forKey:@"opacity"];
+    showSlowly.fromValue = showFast.fromValue = hideFast.toValue = [NSNumber numberWithFloat:0];
+    showSlowly.toValue = showFast.toValue = hideFast.fromValue = [NSNumber numberWithFloat:1];
+    showSlowly.duration = 5;
+    showFast.duration = hideFast.duration = 1;
+    
+    hideFast.removedOnCompletion = NO;
+    hideFast.fillMode = kCAFillModeForwards;
+    
+    [nearBackgroundLayer addAnimation:showSlowly forKey:@"opacity"];
+    [farBackgroundLayer addAnimation:showSlowly forKey:@"opacity"];
+    
+    [moonLayer addAnimation:showFast forKey:@"opacity"];
+    [moonBGLayer addAnimation:showFast forKey:@"opacity"];
+    [nextMoonLayer addAnimation:showFast forKey:@"opacity"];
+    [nextMoonBGLayer addAnimation:showFast forKey:@"opacity"];
+    
+    [titleLabel addAnimation:hideFast forKey:@"opacity"];
 }
 
 - (void) animateBackground {

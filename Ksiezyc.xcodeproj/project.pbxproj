@@ -55,7 +55,6 @@
 		FA5A518B17454FD6001B46F9 /* MoonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonView.m; sourceTree = "<group>"; };
 		FA5A518D1745504B001B46F9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FA9D8F8717492F7B005BE7A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		FA9D8F8B17492FCA005BE7A0 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FAF6B0331747B26100ADCD62 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		FAF6B0351747B6ED00ADCD62 /* backgroundFar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundFar.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -228,7 +227,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				FA9D8F8717492F7B005BE7A0 /* en */,
-				FA9D8F8B17492FCA005BE7A0 /* pl */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

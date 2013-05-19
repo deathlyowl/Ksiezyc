@@ -15,5 +15,6 @@
 + (CALayer *) moonBackgroundWithSize:(CGSize)size andPosition:(CGPoint)position;
 + (CALayer *) background;
 + (CATextLayer *)labelWithBounds:(CGRect)bounds andPosition:(CGPoint)position;
++ (CATextLayer *)titleLabel;
 
 @end
