@@ -13,7 +13,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        day = 0;
+        day = 3;
         moonView = [[MoonView alloc] init];
         self.view = moonView;
     }
@@ -58,19 +58,41 @@
 - (void) setLabel {
     float interval = moon.nextProgress - moon.progress;
     if (interval < 0) interval += 30;
-    if (interval)
+    
+    // W punkt
+    if (interval == 0) [moonView setNextMoonText:[Moon phaseStringWithPhase:[Moon phaseWithProgress:moon.nextProgress]]];
+    
+    // Godziny
+    else if (interval < 1){
+        int hours = interval * 24;
         [moonView setNextMoonText:
-         [NSString stringWithFormat:@"%@ za %.0f dni",
+         [NSString stringWithFormat:NSLocalizedString(@"Hours", @""),
           [Moon phaseStringWithPhase:[Moon phaseWithProgress:moon.nextProgress]],
-          interval]];
-    else [moonView setNextMoonText:[Moon phaseStringWithPhase:[Moon phaseWithProgress:moon.nextProgress]]];
+          hours]];
+    }
+    // Dni
+    else {
+        if (interval < 2) {
+            [moonView setNextMoonText:
+             [NSString stringWithFormat:NSLocalizedString(@"OneDay", @""),
+              [Moon phaseStringWithPhase:[Moon phaseWithProgress:moon.nextProgress]],
+              interval]];
+        }
+        else {
+            [moonView setNextMoonText:
+             [NSString stringWithFormat:NSLocalizedString(@"MoreThanOneDay", @""),
+              [Moon phaseStringWithPhase:[Moon phaseWithProgress:moon.nextProgress]],
+              interval]];
+        }
+    }
 }
 
 #pragma mark -
 #pragma mark Actions
 - (void) horizontalSwipe:(UISwipeGestureRecognizer *) sender {
-    day += .5 * (UISwipeGestureRecognizerDirectionLeft == sender.direction) +
-          -.5 * (UISwipeGestureRecognizerDirectionRight == sender.direction);
+    
+    day += 1./24. * (UISwipeGestureRecognizerDirectionLeft == sender.direction) +
+          -1./24. * (UISwipeGestureRecognizerDirectionRight == sender.direction);
     moon = [Moon moonWithDate:[NSDate dateWithTimeIntervalSinceNow:day*24*60*60]];
     [self reloadInputViews];
 }

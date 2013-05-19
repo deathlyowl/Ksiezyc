@@ -16,7 +16,6 @@
 		FA5A516617454B66001B46F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A516517454B66001B46F9 /* UIKit.framework */; };
 		FA5A516817454B66001B46F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A516717454B66001B46F9 /* Foundation.framework */; };
 		FA5A516A17454B66001B46F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A516917454B66001B46F9 /* CoreGraphics.framework */; };
-		FA5A517017454B66001B46F9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA5A516E17454B66001B46F9 /* InfoPlist.strings */; };
 		FA5A517217454B66001B46F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5A517117454B66001B46F9 /* main.m */; };
 		FA5A517617454B66001B46F9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5A517517454B66001B46F9 /* AppDelegate.m */; };
 		FA5A517817454B66001B46F9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5A517717454B66001B46F9 /* Default.png */; };
@@ -24,6 +23,7 @@
 		FA5A517C17454B66001B46F9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5A517B17454B66001B46F9 /* Default-568h@2x.png */; };
 		FA5A518C17454FD6001B46F9 /* MoonView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5A518B17454FD6001B46F9 /* MoonView.m */; };
 		FA5A518E1745504B001B46F9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A518D1745504B001B46F9 /* QuartzCore.framework */; };
+		FA9D8F8617492F7B005BE7A0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA9D8F8817492F7B005BE7A0 /* Localizable.strings */; };
 		FAF6B0341747B26100ADCD62 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF6B0331747B26100ADCD62 /* Icon@2x.png */; };
 		FAF6B0361747B6ED00ADCD62 /* backgroundFar.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF6B0351747B6ED00ADCD62 /* backgroundFar.png */; };
 /* End PBXBuildFile section */
@@ -44,7 +44,6 @@
 		FA5A516717454B66001B46F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FA5A516917454B66001B46F9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		FA5A516D17454B66001B46F9 /* Ksiezyc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Ksiezyc-Info.plist"; sourceTree = "<group>"; };
-		FA5A516F17454B66001B46F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FA5A517117454B66001B46F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FA5A517317454B66001B46F9 /* Ksiezyc-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ksiezyc-Prefix.pch"; sourceTree = "<group>"; };
 		FA5A517417454B66001B46F9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -55,6 +54,8 @@
 		FA5A518A17454FD6001B46F9 /* MoonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonView.h; sourceTree = "<group>"; };
 		FA5A518B17454FD6001B46F9 /* MoonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoonView.m; sourceTree = "<group>"; };
 		FA5A518D1745504B001B46F9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		FA9D8F8717492F7B005BE7A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FA9D8F8B17492FCA005BE7A0 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FAF6B0331747B26100ADCD62 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		FAF6B0351747B6ED00ADCD62 /* backgroundFar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundFar.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,6 +114,7 @@
 				FA5A518B17454FD6001B46F9 /* MoonView.m */,
 				FA57C27717458CA5000ACB24 /* Moon.h */,
 				FA57C27817458CA5000ACB24 /* Moon.m */,
+				FA9D8F8817492F7B005BE7A0 /* Localizable.strings */,
 				FA57C27417457132000ACB24 /* ShapeFactory.h */,
 				FA57C27517457132000ACB24 /* ShapeFactory.m */,
 				FA4F819417465A4E00782BC4 /* UIBezierPath+UIGlobeBezierPath.h */,
@@ -131,7 +133,6 @@
 				FA57C27A1745985B000ACB24 /* Icon.png */,
 				FAF6B0331747B26100ADCD62 /* Icon@2x.png */,
 				FA5A516D17454B66001B46F9 /* Ksiezyc-Info.plist */,
-				FA5A516E17454B66001B46F9 /* InfoPlist.strings */,
 				FA5A517117454B66001B46F9 /* main.m */,
 				FA5A517717454B66001B46F9 /* Default.png */,
 				FA5A517917454B66001B46F9 /* Default@2x.png */,
@@ -175,6 +176,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				pl,
 			);
 			mainGroup = FA5A515917454B66001B46F9;
 			productRefGroup = FA5A516317454B66001B46F9 /* Products */;
@@ -191,7 +193,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA5A517017454B66001B46F9 /* InfoPlist.strings in Resources */,
 				FA5A517817454B66001B46F9 /* Default.png in Resources */,
 				FA5A517A17454B66001B46F9 /* Default@2x.png in Resources */,
 				FA5A517C17454B66001B46F9 /* Default-568h@2x.png in Resources */,
@@ -199,6 +200,7 @@
 				FA4F81981746633B00782BC4 /* backgroundNear.png in Resources */,
 				FAF6B0341747B26100ADCD62 /* Icon@2x.png in Resources */,
 				FAF6B0361747B6ED00ADCD62 /* backgroundFar.png in Resources */,
+				FA9D8F8617492F7B005BE7A0 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,12 +224,13 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		FA5A516E17454B66001B46F9 /* InfoPlist.strings */ = {
+		FA9D8F8817492F7B005BE7A0 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FA5A516F17454B66001B46F9 /* en */,
+				FA9D8F8717492F7B005BE7A0 /* en */,
+				FA9D8F8B17492FCA005BE7A0 /* pl */,
 			);
-			name = InfoPlist.strings;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

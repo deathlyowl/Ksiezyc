@@ -38,7 +38,9 @@
     remainder *= 11;
     remainder %= 30;
     
-    progress = remainder + day + month + .5*(hour>12);
+    progress = remainder + day + month + ((float)hour / 24);
+    NSLog(@"Progress: %.2f", progress);
+    
     if (year>2000) progress -= 8;
     if (progress<0) progress += 30;
 }
@@ -71,10 +73,10 @@
 
 + (NSString*) phaseStringWithPhase:(short) phase {
     switch (phase) {
-        case MOON_PHASE_FIRST: return @"faza pierwsza";
-        case MOON_PHASE_NEW: return @"nów";
-        case MOON_PHASE_THIRD: return @"faza Trzecia";
-        case MOON_PHASE_FULL: return @"pełnia";
+        case MOON_PHASE_FIRST: return NSLocalizedString(@"FirstQuarter", @"");
+        case MOON_PHASE_NEW: return NSLocalizedString(@"NewMoon", @"");
+        case MOON_PHASE_THIRD: return NSLocalizedString(@"ThirdQuarter", @"");
+        case MOON_PHASE_FULL: return NSLocalizedString(@"FullMoon", @"");
         case MOON_PHASE_GROWING: return @"księżyc rośnie";
         case MOON_PHASE_WITCHERING: return @"księżyc maleje";
     }
