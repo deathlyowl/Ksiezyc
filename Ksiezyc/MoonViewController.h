@@ -14,7 +14,7 @@
     Moon *moon;
     MoonView *moonView;
     
-    int days;
+    int day;
 }
 
 @property (nonatomic, retain) MoonView *view;

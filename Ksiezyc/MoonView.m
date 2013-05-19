@@ -17,9 +17,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (self) {
-        [self setupLayers];
-    }
+    if (self) [self setupLayers];
     return self;
 }
 

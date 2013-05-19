@@ -13,61 +13,79 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        days = 0;
+        day = 0;
         moonView = [[MoonView alloc] init];
-        moon = [Moon moonWithDate:[NSDate dateWithTimeIntervalSinceNow:0]];
         self.view = moonView;
     }
-    [self setLabel];
-    [moonView animateMoonToPercentage:[Moon percentageWithProgress:moon.progress]];
-    [moonView animateNextMoonToPercentage:[Moon percentageWithProgress:moon.nextProgress]];
-
-
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(backToBlack)
                                                  name:@"Active"
-                                               object:nil];
+                                            object:nil];
+    
+    
+    UISwipeGestureRecognizer *leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(horizontalSwipe:)];
+    UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(horizontalSwipe:)];
+    
+    [leftSwipe setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+    [rightSwipe setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    
+    [moonView addGestureRecognizer:leftSwipe];
+    [moonView addGestureRecognizer:rightSwipe];
+    
+    moon = [Moon moonWithDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+    
+    [self reloadInputViews];
+    
     return self;
+}
+
+- (void) reloadInputViews{
+    [self setLabel];
+    [moonView animateMoonToPercentage:[Moon percentageWithProgress:moon.progress]];
+    [moonView animateNextMoonToPercentage:[Moon percentageWithProgress:moon.nextProgress]];
 }
 
 - (void) setLabel{
     int interval = (int)(moon.nextProgress-moon.progress);
-    
-    if (interval) {
-        [moonView setNextMoonText:[NSString stringWithFormat:@"%@ za %i dni",
-                                   [Moon phaseStringWithPhase:[Moon phaseWithProgress:moon.nextProgress]],
-                                   (int)(moon.nextProgress-moon.progress)]];
-    }
-    else{
-        [moonView setNextMoonText:[Moon phaseStringWithPhase:[Moon phaseWithProgress:moon.nextProgress]]];
-    }
-    
-    
+    if (interval)
+        [moonView setNextMoonText:
+         [NSString stringWithFormat:@"%@ za %i dni",
+          [Moon phaseStringWithPhase:[Moon phaseWithProgress:moon.nextProgress]],
+          interval]];
+    else [moonView setNextMoonText:[Moon phaseStringWithPhase:[Moon phaseWithProgress:moon.nextProgress]]];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [moonView showMoon];
     [moonView animateBackground];
-    /*
-    [NSTimer scheduledTimerWithTimeInterval:1
-                                     target:self
-                                   selector:@selector(tick)
-                                   userInfo:nil
-                                    repeats:YES];
-     */
-     
 }
 
-- (void) tick{
-    moon = [Moon moonWithDate:[NSDate dateWithTimeIntervalSinceNow:24*60*60*++days*.5]];
+- (void) backToBlack{
+    moon = [Moon moonWithDate:[NSDate date]];
+    [self reloadInputViews];
+}
+
+- (void) tick {
+    moon = [Moon moonWithDate:[NSDate dateWithTimeIntervalSinceNow:day++*24*60*60]];
     [moonView animateMoonToPercentage:[Moon percentageWithProgress:moon.progress]];
     [moonView animateNextMoonToPercentage:[Moon percentageWithProgress:moon.nextProgress]];
     [self setLabel];
 }
 
-- (void) backToBlack{
-    [self tick];
-    [moonView animateBackground];
+- (void) horizontalSwipe:(UISwipeGestureRecognizer *) sender
+{
+    switch (sender.direction) {
+        case UISwipeGestureRecognizerDirectionLeft:
+            day++;
+            break;
+        case UISwipeGestureRecognizerDirectionRight:
+            day--;
+            break;
+        default:
+            break;
+    }
+    moon = [Moon moonWithDate:[NSDate dateWithTimeIntervalSinceNow:day*24*60*60]];
+    [self reloadInputViews];
 }
 
 @end

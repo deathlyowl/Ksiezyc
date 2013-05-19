@@ -47,7 +47,7 @@
     int tmp = progress/7.5;
     tmp ++;
     float nextProgress = tmp*7.5;
-    return nextProgress;
+    return fmod(nextProgress,30);
 }
 
 - (float) progress {
@@ -55,7 +55,7 @@
 }
 
 + (short) phaseWithProgress:(float) progress {
-    if (progress==0 || progress==30)return MOON_PHASE_NEW;
+    if (progress==0)return MOON_PHASE_NEW;
     if (progress==7.5) return MOON_PHASE_FIRST;
     if (progress==15) return MOON_PHASE_FULL;
     if (progress==22.5) return MOON_PHASE_THIRD;
