@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  Ksiezyc
+
+  Created by Paweł Ksieniewicz on 19.05.2013.
+  Copyright (c) 2013 Paweł Ksieniewicz. All rights reserved.
+*/
+
+"FirstQuarter" = "faza pierwsza";
+"ThirdQuarter" = "faza pierwsza";
+"FullMoon" = "pełnia";
+"NewMoon" = "nów";
+
+"OneDay" = "jutro %@";
+"MoreThanOneDay" = "%@ za %.0f dni";
+
+"Hours" = "%@ za %d godzin";
